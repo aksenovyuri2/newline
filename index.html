@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Бустра · финансовый маркетплейс</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Warm sand canvas */
+    --bg:#F4EFE6;
+    --paper:#FFFFFF;
+    --warm:#FAF7F0;
+    /* Ink — warm dark, не чёрный */
+    --ink:#15282C;
+    --ink-2:#3A4D52;
+    --ink-3:#7A8B8F;
+    --ink-4:#B8C0BD;
+    --hairline:#DCD3C0;
+    --hairline-2:#E8E1D0;
+    /* Primary accent — deep petrol — спокойный, доверительный */
+    --primary:#1F4E5F;
+    --primary-deep:#163A47;
+    --primary-soft:#E5EFF1;
+    --primary-tint:#F1F6F7;
+    /* Warm copper — secondary, для тёплых деталей */
+    --copper:#A0876A;
+    --copper-soft:#F0E8D9;
+    /* Forest — trust ribbon */
+    --forest:#2D4A30;
+    --forest-soft:#E0E8DD;
+    /* Soft sun — для редких bright details */
+    --sun:#E5C547;
+
+    --shadow-1:0 1px 2px rgba(21,40,44,.04);
+    --shadow-2:0 12px 32px rgba(21,40,44,.06);
+    --shadow-3:0 28px 64px rgba(21,40,44,.10);
+  }
+  *{box-sizing:border-box}html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:'Inter',ui-sans-serif,system-ui,sans-serif;
+    font-size:15.5px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility
+  }
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+  .display{font-family:'Manrope',sans-serif;font-weight:800;letter-spacing:-.025em;line-height:.98;color:var(--ink)}
+  .display em{font-style:normal;color:var(--primary)}
+
+  /* ===== Top utility bar (compact) ===== */
+  .top{font-size:11.5px;color:var(--ink-3);background:transparent;border-bottom:1px solid var(--hairline)}
+  .top-in{max-width:1240px;margin:0 auto;padding:6px 28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center}
+  .top-in b{color:var(--ink-2);font-weight:600}
+  .top a{color:var(--ink-2);transition:color .18s}
+  .top a:hover{color:var(--primary)}
+
+  /* ===== Site nav (compact) ===== */
+  .nav{position:sticky;top:0;background:rgba(244,239,230,.96);backdrop-filter:blur(8px);z-index:90;border-bottom:1px solid var(--hairline)}
+  .nav-in{max-width:1240px;margin:0 auto;padding:11px 28px;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center}
+  .logo{display:flex;align-items:center;gap:11px;font-family:'Manrope',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.025em}
+  .logo-mark{width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-family:'Manrope',sans-serif;font-weight:800;font-size:13px}
+  .nav-links{display:flex;gap:24px;font-size:13.5px;color:var(--ink-2);font-weight:500}
+  .nav-links a{transition:color .18s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a.curr{color:var(--primary);font-weight:600}
+  .nav-cta{display:flex;gap:10px;align-items:center}
+
+  /* ===== Buttons ===== */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:11px 22px;border-radius:999px;font-weight:600;font-size:14px;transition:all .18s ease;font-family:inherit;border:1px solid transparent}
+  .btn-pri{background:var(--primary);color:#fff}
+  .btn-pri:hover{background:var(--primary-deep);transform:translateY(-1px);box-shadow:0 8px 20px rgba(31,78,95,.22)}
+  .btn-sec{background:transparent;color:var(--ink);border-color:var(--hairline)}
+  .btn-sec:hover{border-color:var(--ink);background:var(--paper)}
+  .btn-ghost{color:var(--ink-2)}
+  .btn-ghost:hover{color:var(--ink);background:var(--paper)}
+  .btn-dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .btn-dark:hover{background:#000}
+  .btn-arrow::after{content:"→";font-weight:400;transition:transform .2s}
+  .btn-arrow:hover::after{transform:translateX(3px)}
+  .btn-block{display:flex;width:100%}
+
+  /* Pills */
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:500;border:1px solid var(--hairline);background:var(--paper);color:var(--ink-2)}
+  .pill-loans{background:var(--primary-soft);color:var(--primary);border-color:rgba(31,78,95,.2)}
+  .dot{width:6px;height:6px;border-radius:50%;background:currentColor;display:inline-block}
+
+  /* ===== Hero — fits one screen ===== */
+  .hero{padding:24px 0 28px;position:relative;overflow:hidden;display:flex;align-items:center;min-height:calc(100vh - 86px)}
+  .hero::before{content:"";position:absolute;left:60%;top:-10%;width:55vw;height:65%;background:radial-gradient(closest-side,rgba(31,78,95,.07),transparent 70%);pointer-events:none}
+  .hero-inner{position:relative;width:100%}
+  .hero-top{margin-bottom:8px}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;color:var(--primary);font-weight:600;letter-spacing:.02em}
+  .hero-eyebrow::before{content:"";width:24px;height:1px;background:var(--primary)}
+  .hero-grid-text{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:end;margin-bottom:18px}
+  .h1{font-size:clamp(34px,4.6vw,56px);margin:4px 0 0;line-height:1.04}
+  .lead{font-size:15px;color:var(--ink-2);max-width:420px;line-height:1.5;margin:0;font-weight:400}
+  .lead em{color:var(--ink);font-style:normal;font-weight:600}
+
+  /* ===== Segment cards — компактные, fit one screen ===== */
+  .segments{display:grid;grid-template-columns:1.7fr 1fr 1fr;grid-template-rows:auto auto;gap:10px;align-items:stretch}
+  .seg{
+    background:var(--paper);border:1px solid var(--hairline);border-radius:18px;
+    padding:18px;display:flex;flex-direction:column;gap:6px;
+    transition:all .25s cubic-bezier(.2,.8,.2,1);cursor:pointer;position:relative;overflow:hidden
+  }
+  .seg:hover{transform:translateY(-2px);border-color:var(--ink-3);box-shadow:var(--shadow-2)}
+  .seg-ico{width:32px;height:32px;border-radius:50%;background:var(--warm);display:grid;place-items:center;font-size:14px;border:1px solid var(--hairline-2);color:var(--ink-2)}
+  .seg h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;margin:2px 0 0;letter-spacing:-.015em;line-height:1.15}
+  .seg p{margin:0;font-size:13px;color:var(--ink-3);line-height:1.45}
+  .seg-pill{
+    align-self:flex-start;margin-top:auto;
+    font-size:11px;color:var(--ink-2);
+    padding-top:10px;border-top:1px solid var(--hairline);width:100%;font-weight:500
+  }
+  .seg-arrow{
+    position:absolute;top:18px;right:18px;
+    width:26px;height:26px;border-radius:50%;
+    border:1px solid var(--hairline);
+    display:grid;place-items:center;
+    color:var(--ink-3);font-size:12px;transition:all .25s
+  }
+  .seg:hover .seg-arrow{background:var(--ink);color:#fff;border-color:var(--ink);transform:translate(2px,-2px)}
+
+  /* PRIMARY — займ */
+  .seg.primary{
+    grid-column:1;grid-row:1 / span 2;
+    background:linear-gradient(165deg,var(--primary) 0%,var(--primary-deep) 100%);
+    color:#fff;border:0;padding:24px;
+    box-shadow:0 20px 48px rgba(31,78,95,.18)
+  }
+  .seg.primary::after{content:"";position:absolute;right:-100px;bottom:-100px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none}
+  .seg.primary .seg-ico{background:rgba(255,255,255,.16);border:0;width:38px;height:38px;font-size:16px;color:#fff}
+  .seg.primary h3{font-size:28px;margin-top:4px;color:#fff;font-weight:800;line-height:1.05;max-width:300px}
+  .seg.primary p{color:rgba(255,255,255,.78);font-size:13.5px;max-width:340px;line-height:1.5}
+  .seg.primary .seg-pill{background:rgba(255,255,255,.16);color:#fff;border-top:0;padding-top:0;width:auto;padding:4px 10px;border-radius:999px;margin-top:4px;font-size:11px}
+  .seg.primary .seg-arrow{background:rgba(255,255,255,.16);border-color:transparent;color:#fff}
+  .seg-stats{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.18);display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative}
+  .seg-stats .k{font-size:11px;color:rgba(255,255,255,.6);font-weight:500}
+  .seg-stats .v{font-family:'Manrope',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.02em;line-height:1;margin-top:3px;color:#fff}
+  .seg-cta{margin-top:10px;background:#fff;color:var(--primary);padding:11px 18px;border-radius:999px;font-weight:600;display:flex;justify-content:space-between;align-items:center;font-size:13px;position:relative}
+
+  /* ===== Section header ===== */
+  .sec{padding:80px 0}
+  .sec + .sec{border-top:1px solid var(--hairline)}
+  .sec-head{margin-bottom:36px;display:grid;grid-template-columns:1fr auto;align-items:end;gap:20px}
+  .sec-num{font-size:11px;color:var(--ink-3);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+  .sec-num span{color:var(--primary)}
+  .sec-h{
+    font-family:'Manrope',sans-serif;font-weight:800;
+    font-size:clamp(30px,4vw,46px);
+    line-height:1;letter-spacing:-.025em;
+    margin:0;color:var(--ink);max-width:780px
+  }
+  .sec-h em{font-style:normal;color:var(--primary)}
+  .sec-lead{margin:14px 0 0;color:var(--ink-2);font-size:15px;line-height:1.55;max-width:620px}
+  .sec-link{
+    color:var(--ink);font-size:14px;font-weight:600;
+    display:inline-flex;align-items:center;gap:8px;
+    border-bottom:1.5px solid var(--primary);padding-bottom:4px;
+    white-space:nowrap;align-self:end;transition:all .18s
+  }
+  .sec-link:hover{color:var(--primary)}
+  .sec-link::after{content:"→";transition:transform .18s}
+  .sec-link:hover::after{transform:translateX(4px)}
+
+  /* ===== Tabs ===== */
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px}
+  .tab{
+    padding:9px 16px;border-radius:999px;
+    font-size:13px;color:var(--ink-2);font-weight:500;
+    background:transparent;border:1px solid var(--hairline);transition:all .18s
+  }
+  .tab:hover{border-color:var(--ink-3);color:var(--ink)}
+  .tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* ===== Offer cards ===== */
+  .offers{display:grid;grid-template-columns:repeat(3,1fr) 1.15fr;gap:14px}
+  .offer{
+    background:var(--paper);border:1px solid var(--hairline);
+    border-radius:20px;padding:24px;
+    display:flex;flex-direction:column;gap:14px;transition:all .2s
+  }
+  .offer:hover{border-color:var(--primary);box-shadow:var(--shadow-2);transform:translateY(-2px)}
+  .offer-h{display:flex;justify-content:space-between;align-items:center}
+  .offer-logo{
+    width:42px;height:42px;border-radius:50%;
+    background:var(--warm);border:1px solid var(--hairline);
+    display:grid;place-items:center;
+    font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;color:var(--ink-2)
+  }
+  .offer-tag{
+    font-size:10.5px;
+    background:var(--warm);color:var(--ink-2);
+    padding:4px 10px;border-radius:6px;font-weight:600;border:1px solid var(--hairline);letter-spacing:.02em
+  }
+  .offer-tag.hot{background:var(--primary-soft);color:var(--primary);border-color:rgba(31,78,95,.2)}
+  .offer-name{font-size:13px;color:var(--ink-3);font-weight:500}
+  .offer-rate{
+    font-family:'Manrope',sans-serif;font-weight:800;
+    font-size:46px;letter-spacing:-.04em;line-height:.96;
+    color:var(--primary)
+  }
+  .offer-rate small{
+    font-family:'Inter';font-size:13px;color:var(--ink-3);
+    font-weight:500;display:block;margin-top:8px;letter-spacing:0
+  }
+  .offer-meta{
+    font-size:13px;color:var(--ink-2);display:grid;gap:5px;
+    padding-top:12px;border-top:1px solid var(--hairline-2)
+  }
+  .offer-meta b{color:var(--ink);font-weight:600}
+  .offer-cta{margin-top:auto}
+
+  /* Big CTA card */
+  .offer-big{background:var(--ink);color:#fff;border:0;padding:28px;background-image:radial-gradient(closest-side at 80% 100%,rgba(31,78,95,.32),transparent 70%)}
+  .offer-big h4{font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;line-height:1.05;letter-spacing:-.025em;margin:0 0 10px;color:#fff;max-width:240px}
+  .offer-big p{margin:0;font-size:14px;color:rgba(255,255,255,.7);line-height:1.55}
+  .offer-big-arrow{margin-top:auto;width:54px;height:54px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-size:20px;align-self:flex-end}
+
+  /* ===== Journal ===== */
+  .journal{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .article{
+    background:var(--paper);border:1px solid var(--hairline);
+    border-radius:18px;padding:24px;
+    display:flex;flex-direction:column;gap:12px;transition:all .2s;cursor:pointer
+  }
+  .article:hover{border-color:var(--ink-3);transform:translateY(-2px);box-shadow:var(--shadow-1)}
+  .article-cat{font-size:11px;color:var(--copper);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+  .article h5{font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;line-height:1.3;margin:4px 0 0;letter-spacing:-.015em}
+  .article-meta{margin-top:auto;padding-top:16px;font-size:12px;color:var(--ink-3);font-weight:500;border-top:1px solid var(--hairline-2)}
+
+  /* ===== Reviews ===== */
+  .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .rev{background:var(--paper);border:1px solid var(--hairline);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:16px}
+  .rev-stars{font-size:13px;color:var(--copper);letter-spacing:2px;font-family:'Manrope';font-weight:700}
+  .rev p{margin:0;font-size:16px;line-height:1.5;color:var(--ink);font-weight:500;letter-spacing:-.005em}
+  .rev-who{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:16px;border-top:1px solid var(--hairline-2);font-size:12.5px;color:var(--ink-3);font-weight:500}
+  .rev-av{width:34px;height:34px;border-radius:50%;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;font-family:'Manrope',sans-serif;font-weight:700;font-size:12px}
+
+  /* ===== License ===== */
+  .license{
+    background:var(--paper);border:1px solid var(--hairline);
+    border-radius:22px;padding:36px 40px;
+    display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center
+  }
+  .license h3{
+    font-family:'Manrope',sans-serif;font-weight:800;
+    font-size:30px;line-height:1.08;margin:0 0 14px;letter-spacing:-.02em
+  }
+  .license h3 em{font-style:normal;color:var(--primary)}
+  .license p{margin:0 0 18px;font-size:14.5px;color:var(--ink-2);line-height:1.55;max-width:520px}
+  .license-tags{display:flex;gap:8px;flex-wrap:wrap}
+  .license-tag{font-size:11.5px;padding:6px 13px;border-radius:999px;background:var(--primary-soft);color:var(--primary);font-weight:600;border:1px solid rgba(31,78,95,.18)}
+  .rate-list{display:grid;gap:8px;min-width:280px}
+  .rate-item{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:12px 16px;background:var(--warm);border:1px solid var(--hairline);border-radius:12px}
+  .rate-item .nm{font-weight:700;font-size:13.5px}
+  .rate-item .nm small{display:block;font-size:11px;color:var(--ink-3);font-weight:500;margin-top:2px}
+  .rate-item .stars{color:var(--copper);font-size:12.5px;letter-spacing:2px}
+  .rate-item .val{font-family:'Manrope',sans-serif;font-weight:800;font-size:18px;color:var(--ink);letter-spacing:-.02em}
+
+  /* ===== Metrics ===== */
+  .metrics{margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+  .metric{padding:36px 24px;border-right:1px solid var(--hairline)}
+  .metric:last-child{border-right:0}
+  .metric .num{font-family:'Manrope',sans-serif;font-weight:800;font-size:60px;line-height:.92;letter-spacing:-.04em;color:var(--ink)}
+  .metric .num em{font-style:normal;color:var(--primary)}
+  .metric .lab{margin-top:14px;font-size:13px;color:var(--ink-3);font-weight:500;line-height:1.4}
+
+  /* ===== Newsletter ===== */
+  .news{
+    background:var(--ink);color:#fff;border-radius:24px;padding:48px;
+    display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
+    position:relative;overflow:hidden
+  }
+  .news::after{content:"";position:absolute;right:-150px;top:-150px;width:480px;height:480px;border-radius:50%;background:radial-gradient(closest-side,rgba(31,78,95,.4),transparent 70%);pointer-events:none}
+  .news-content{position:relative}
+  .news h3{font-family:'Manrope',sans-serif;font-weight:800;font-size:38px;line-height:1.06;letter-spacing:-.025em;margin:0 0 14px;color:#fff}
+  .news h3 em{font-style:normal;color:#7AC1D2}
+  .news p{margin:0;font-size:15px;color:rgba(255,255,255,.72);line-height:1.55;max-width:440px}
+  .news-form{display:flex;gap:8px;position:relative}
+  .news-form input{flex:1;height:56px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(255,255,255,.04);padding:0 24px;font-family:inherit;font-size:14.5px;font-weight:500;color:#fff;outline:0}
+  .news-form input::placeholder{color:rgba(255,255,255,.4)}
+  .news-form input:focus{background:rgba(255,255,255,.08);border-color:#7AC1D2}
+  .news-form button{padding:0 26px;background:var(--primary);color:#fff;border-radius:999px;font-weight:600;font-size:14px;height:56px;transition:background .18s}
+  .news-form button:hover{background:var(--primary-deep)}
+
+  /* ===== Trust ribbon ===== */
+  .trust-ribbon{
+    margin-top:24px;background:var(--forest);color:#fff;
+    border-radius:16px;padding:18px 28px;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px
+  }
+  .trust-ribbon .l{display:flex;flex-wrap:wrap;gap:18px;font-size:12.5px;font-weight:500;color:rgba(255,255,255,.85)}
+  .trust-ribbon .l span{display:inline-flex;align-items:center;gap:6px}
+  .trust-ribbon .l span::before{content:"";width:5px;height:5px;border-radius:50%;background:#9ED4A2}
+  .trust-ribbon .r{font-size:12px;color:rgba(255,255,255,.6);font-weight:500}
+
+  /* ===== FAQ ===== */
+  .faq{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .faq-item{
+    background:var(--paper);border:1px solid var(--hairline);
+    border-radius:16px;padding:24px 28px;transition:border-color .2s;cursor:pointer
+  }
+  .faq-item:hover{border-color:var(--ink-3)}
+  .faq-q{font-family:'Manrope',sans-serif;font-weight:700;font-size:16.5px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;letter-spacing:-.015em;line-height:1.3;gap:14px}
+  .faq-q::after{content:"+";color:var(--primary);font-weight:300;font-size:22px;flex-shrink:0;transition:transform .2s}
+  .faq-item.open .faq-q::after{transform:rotate(45deg)}
+  .faq-a{margin:0;font-size:14px;color:var(--ink-2);line-height:1.6}
+
+  /* ===== PSK Disclosure ===== */
+  .psk{
+    margin-top:18px;padding:14px 18px;
+    background:var(--warm);border:1px solid var(--hairline);border-radius:12px;
+    font-size:12.5px;color:var(--ink-3);line-height:1.55
+  }
+  .psk b{color:var(--ink-2);font-weight:600}
+
+  /* ===== Footer ===== */
+  .foot{margin-top:80px;padding:48px 0 32px;border-top:1px solid var(--hairline);background:var(--warm)}
+  .foot-grid{max-width:1240px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px}
+  .foot-grid h5{font-size:11px;color:var(--ink-3);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin:0 0 14px}
+  .foot-grid ul{list-style:none;padding:0;margin:0;display:grid;gap:9px;font-size:13.5px;color:var(--ink-2)}
+  .foot-grid ul li:hover{color:var(--ink);cursor:pointer}
+  .foot-disc{margin-top:18px;padding:18px 22px;background:var(--paper);border:1px solid var(--hairline);border-radius:14px;font-size:12px;line-height:1.55;color:var(--ink-3)}
+  .foot-bot{max-width:1240px;margin:32px auto 0;padding:22px 28px 0;border-top:1px solid var(--hairline);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:11.5px;color:var(--ink-3);font-weight:500}
+
+  /* ===== Sticky CTA mobile ===== */
+  .sticky-cta{display:none}
+
+  /* ===== Mobile fits one screen ===== */
+  @media(max-width:980px){
+    .nav-links{display:none}
+    .top-in{justify-content:center;font-size:11px}
+    .top-in > div:last-child{display:none}
+    .nav-in{padding:12px 20px}
+    .nav-cta .btn-ghost{display:none}
+
+    .hero{padding:24px 0;min-height:0}
+    .hero-grid-text{grid-template-columns:1fr;gap:14px;margin-bottom:18px;align-items:start}
+    .h1{font-size:32px;line-height:1.04}
+    .lead{font-size:14px;max-width:none}
+
+    .segments{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;gap:8px}
+    .seg{padding:18px;min-height:auto;gap:6px}
+    .seg-ico{width:34px;height:34px;font-size:16px}
+    .seg h3{font-size:15px}
+    .seg p{font-size:12.5px}
+    .seg-pill{font-size:11px;padding-top:10px}
+    .seg-arrow{width:24px;height:24px;font-size:12px;top:18px;right:18px}
+    .seg.primary{grid-column:1 / span 2;grid-row:1;padding:22px}
+    .seg.primary h3{font-size:24px}
+    .seg.primary p{font-size:13.5px;display:none}
+    .seg.primary .seg-stats{padding-top:14px;gap:10px}
+    .seg.primary .seg-stats .v{font-size:18px}
+    .seg.primary .seg-cta{padding:11px 16px;font-size:13px;margin-top:10px}
+
+    .sec{padding:48px 0}
+    .sec-head{grid-template-columns:1fr;gap:14px}
+    .license,.news{grid-template-columns:1fr;gap:32px;padding:32px}
+    .offers,.journal,.reviews,.faq,.foot-grid{grid-template-columns:1fr;gap:10px}
+    .metrics{grid-template-columns:1fr 1fr}
+    .metric{padding:24px 18px}
+    .metric .num{font-size:42px}
+
+    body{padding-bottom:80px}
+    .sticky-cta{display:flex;position:fixed;bottom:0;left:0;right:0;background:var(--paper);border-top:1px solid var(--hairline);padding:12px 16px;gap:10px;z-index:50;box-shadow:0 -4px 20px rgba(21,40,44,.06)}
+    .sticky-cta button{flex:1}
+  }
+</style>
+</head>
+<body>
+
+<!-- Top utility bar -->
+<div class="top">
+  <div class="top-in">
+    <div>В реестре <b>Банка России</b> · 150+ партнёров · подбор бесплатный</div>
+    <div><a>Поддержка 24/7</a> · <a>Журнал</a> · <a>Войти →</a></div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-in">
+    <div class="logo"><span class="logo-mark">Б</span> Бустра</div>
+    <div class="nav-links">
+      <a class="curr">Главная</a>
+      <a>Займы</a>
+      <a>Кредиты</a>
+      <a>Карты</a>
+      <a>Вклады</a>
+      <a>Журнал</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn btn-ghost">Кабинет</button>
+      <button class="btn btn-pri">Подобрать</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO — fits one screen ============ -->
+<section class="hero">
+  <div class="wrap hero-inner">
+
+    <div class="hero-top">
+      <div class="hero-eyebrow">Шаг 1 · около минуты</div>
+    </div>
+
+    <div class="hero-grid-text">
+      <h1 class="display h1">С чем мы можем <em>помочь?</em></h1>
+      <p class="lead">Подберём предложения от партнёров реестра Банка России. <em>Без обзвона</em> и скрытых условий.</p>
+    </div>
+
+    <div class="segments">
+      <button class="seg primary" aria-label="Краткосрочный займ — основной выбор">
+        <div class="seg-ico">⌖</div>
+        <h3>Краткосрочный заём</h3>
+        <p>От 3 000 до 100 000 ₽ — быстро и без лишних формальностей.</p>
+        <span class="seg-pill">87% находят подходящее предложение</span>
+        <div class="seg-stats">
+          <div><div class="k">Сумма</div><div class="v">до 100 000 ₽</div></div>
+          <div><div class="k">На карту</div><div class="v">≈ 15 минут</div></div>
+        </div>
+        <div class="seg-cta">Изучить варианты <span>→</span></div>
+      </button>
+
+      <button class="seg" aria-label="Кредит">
+        <span class="seg-arrow">→</span>
+        <div class="seg-ico">◐</div>
+        <h3>Кредит</h3>
+        <p>На покупки, ремонт, обучение</p>
+        <span class="seg-pill">от 5,9% годовых</span>
+      </button>
+
+      <button class="seg" aria-label="Карта">
+        <span class="seg-arrow">→</span>
+        <div class="seg-ico">◊</div>
+        <h3>Карта</h3>
+        <p>Дебетовые и кредитные карты</p>
+        <span class="seg-pill">кэшбэк до 30%</span>
+      </button>
+
+      <button class="seg" aria-label="Сбережения">
+        <span class="seg-arrow">→</span>
+        <div class="seg-ico">↑</div>
+        <h3>Сбережения</h3>
+        <p>Вклады и накопительные счета</p>
+        <span class="seg-pill">до 22% годовых</span>
+      </button>
+
+      <button class="seg" aria-label="Страхование">
+        <span class="seg-arrow">→</span>
+        <div class="seg-ico">⌂</div>
+        <h3>Страхование</h3>
+        <p>ОСАГО, КАСКО, ипотечное</p>
+        <span class="seg-pill">от 3 200 ₽</span>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ BEST OFFERS WITH TABS ============ -->
+<section class="sec" style="border-top:1px solid var(--hairline)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-num"><span>02</span> · Подборка дня</div>
+        <h2 class="sec-h">Сегодняшние <em>предложения</em></h2>
+        <p class="sec-lead">Подбор для пользователей с похожим профилем. Точные условия каждого предложения — на странице партнёра до подачи заявки.</p>
+      </div>
+      <a class="sec-link">Все 150+ предложений</a>
+    </div>
+
+    <div class="tabs">
+      <button class="tab on">Займы</button>
+      <button class="tab">Кредиты</button>
+      <button class="tab">Кредитные карты</button>
+      <button class="tab">Дебетовые карты</button>
+      <button class="tab">Вклады</button>
+      <button class="tab">Облигации</button>
+      <button class="tab">ОСАГО</button>
+      <button class="tab">КАСКО</button>
+      <button class="tab">Ипотека</button>
+      <button class="tab">Автокредиты</button>
+    </div>
+
+    <div class="offers">
+      <div class="offer">
+        <div class="offer-h">
+          <div class="offer-logo">МД</div>
+          <span class="offer-tag">Рекомендуем</span>
+        </div>
+        <div class="offer-name">МигДеньги</div>
+        <div class="offer-rate">0%<small>первый займ — 96% получают одобрение</small></div>
+        <div class="offer-meta">
+          <div>Сумма — <b>до 30 000 ₽</b></div>
+          <div>Срок — <b>до 30 дней</b></div>
+        </div>
+        <button class="btn btn-sec btn-block btn-arrow offer-cta">Подробнее</button>
+      </div>
+
+      <div class="offer">
+        <div class="offer-h">
+          <div class="offer-logo">ММ</div>
+          <span class="offer-tag hot">Популярно</span>
+        </div>
+        <div class="offer-name">Манимен</div>
+        <div class="offer-rate">0,8%<small>в сутки · ПСК 292% годовых</small></div>
+        <div class="offer-meta">
+          <div>Сумма — <b>до 100 000 ₽</b></div>
+          <div>Срок — <b>до 126 дней</b></div>
+        </div>
+        <button class="btn btn-sec btn-block btn-arrow offer-cta">Подробнее</button>
+      </div>
+
+      <div class="offer">
+        <div class="offer-h">
+          <div class="offer-logo">КП</div>
+          <span class="offer-tag">Гибкий график</span>
+        </div>
+        <div class="offer-name">КредитПлюс</div>
+        <div class="offer-rate">0,5%<small>в сутки · ПСК 182% годовых</small></div>
+        <div class="offer-meta">
+          <div>Сумма — <b>до 50 000 ₽</b></div>
+          <div>Срок — <b>до 60 дней</b></div>
+        </div>
+        <button class="btn btn-sec btn-block btn-arrow offer-cta">Подробнее</button>
+      </div>
+
+      <div class="offer offer-big">
+        <h4>Подскажем подходящее</h4>
+        <p>Ответьте на 3 коротких вопроса — покажем варианты под ваш запрос.</p>
+        <div class="offer-big-arrow">→</div>
+      </div>
+    </div>
+
+    <div class="psk">
+      <b>Раскрытие по 353-ФЗ:</b> Подбор бесплатный для клиента. Решение по займу принимает партнёр. ПСК у партнёров — от 0% (первый заём) до 292% годовых. Точное значение указывается в карточке партнёра до подачи заявки.
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOURNAL ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-num"><span>03</span> · Журнал</div>
+        <h2 class="sec-h">Полезное о финансах <em>и кредитной истории</em></h2>
+        <p class="sec-lead">Объясняем простым языком, как формируется кредитный рейтинг, что влияет на условия займов и как сделать правильный выбор.</p>
+      </div>
+      <a class="sec-link">Все статьи</a>
+    </div>
+    <div class="journal">
+      <div class="article">
+        <span class="article-cat">Кредитный рейтинг</span>
+        <h5>Что влияет на кредитный рейтинг — главное за 12 минут</h5>
+        <div class="article-meta">12 мин · 24 тыс. читателей</div>
+      </div>
+      <div class="article">
+        <span class="article-cat">Карты</span>
+        <h5>Жизненный цикл кредитной карты — когда стоит закрывать</h5>
+        <div class="article-meta">8 мин · 18 тыс.</div>
+      </div>
+      <div class="article">
+        <span class="article-cat">Стратегия</span>
+        <h5>Как улучшить кредитный рейтинг постепенно: план на 6 месяцев</h5>
+        <div class="article-meta">15 мин · 31 тыс.</div>
+      </div>
+      <div class="article">
+        <span class="article-cat">БКИ</span>
+        <h5>Как читать отчёт НБКИ — пошаговое руководство</h5>
+        <div class="article-meta">10 мин · 22 тыс.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-num"><span>04</span> · Отзывы</div>
+        <h2 class="sec-h">Что говорят <em>наши клиенты</em></h2>
+        <p class="sec-lead">Реальные истории людей, которые пользуются Бустрой. Имена и регионы публикуются с письменного согласия по 152-ФЗ.</p>
+      </div>
+    </div>
+    <div class="reviews">
+      <div class="rev">
+        <div class="rev-stars">★★★★★</div>
+        <p>«Удобно, что всё в одном кабинете. Брал займ, потом открыл вклад, оформил полис. Не нужно держать в голове пароли от пяти разных сервисов.»</p>
+        <div class="rev-who">
+          <div class="rev-av">ВЛ</div>
+          <div>Виталий Л. · Самара<br><span style="color:var(--ink-4)">3 продукта в кабинете</span></div>
+        </div>
+      </div>
+      <div class="rev">
+        <div class="rev-stars">★★★★★</div>
+        <p>«Понравилось, что не давят и не звонят. Спокойно сравнила варианты, выбрала подходящий — без рекламного шума.»</p>
+        <div class="rev-who">
+          <div class="rev-av">ИГ</div>
+          <div>Ирина Г. · Тула<br><span style="color:var(--ink-4)">Серебряный уровень</span></div>
+        </div>
+      </div>
+      <div class="rev">
+        <div class="rev-stars">★★★★★</div>
+        <p>«Накопил уже 18 000 баллов в клубе — оплачу почти всю страховку в этом году. Простая, прозрачная система.»</p>
+        <div class="rev-who">
+          <div class="rev-av">АН</div>
+          <div>Артём Н. · СПб<br><span style="color:var(--ink-4)">Золотой уровень</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LICENSE ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="license">
+      <div>
+        <h3>В реестре финансовых маркетплейсов <em>Банка России</em></h3>
+        <p>С 2018 года помогаем находить подходящие финансовые продукты. Все партнёры проходят проверку требованиям Банка России и профильных законов.</p>
+        <div class="license-tags">
+          <span class="license-tag">В реестре ЦБ РФ</span>
+          <span class="license-tag">353-ФЗ</span>
+          <span class="license-tag">156-ФЗ</span>
+          <span class="license-tag">152-ФЗ</span>
+        </div>
+      </div>
+      <div class="rate-list">
+        <div class="rate-item">
+          <div class="nm">Banki.ru<small>12 034 отзыва</small></div>
+          <div style="display:flex;align-items:center;gap:12px"><div class="stars">★★★★★</div><div class="val">4,8</div></div>
+        </div>
+        <div class="rate-item">
+          <div class="nm">App Store<small>8 210 оценок</small></div>
+          <div style="display:flex;align-items:center;gap:12px"><div class="stars">★★★★★</div><div class="val">4,9</div></div>
+        </div>
+        <div class="rate-item">
+          <div class="nm">Google Play<small>6 445 оценок</small></div>
+          <div style="display:flex;align-items:center;gap:12px"><div class="stars">★★★★★</div><div class="val">4,7</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><div class="num">1,4M<em>+</em></div><div class="lab">людей доверились нам</div></div>
+      <div class="metric"><div class="num">87<em>%</em></div><div class="lab">находят подходящее</div></div>
+      <div class="metric"><div class="num">7<em> лет</em></div><div class="lab">помогаем</div></div>
+      <div class="metric"><div class="num">₽ 0</div><div class="lab">без комиссии для клиента</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="news">
+      <div class="news-content">
+        <h3>Подборка раз в неделю —<br>тихая, по делу</h3>
+        <p>Только реальные предложения партнёров и важные новости. Без рекламного шума и спама. Можно отписаться в один клик.</p>
+      </div>
+      <form class="news-form" onsubmit="event.preventDefault()">
+        <input type="email" placeholder="Ваш email">
+        <button type="submit">Подписаться</button>
+      </form>
+    </div>
+
+    <div class="trust-ribbon">
+      <div class="l">
+        <span>В реестре Банка России</span>
+        <span>156-ФЗ · согласия раздельные</span>
+        <span>АСВ-партнёр</span>
+        <span>РСА-партнёр</span>
+      </div>
+      <div class="r">Лицензия № МФ-…</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-num"><span>05</span> · Частые вопросы</div>
+        <h2 class="sec-h">Что важно <em>знать заранее</em></h2>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item"><div class="faq-q">Зачем выбирать «цель» — почему сразу не показать займы?</div><p class="faq-a">Чтобы предложения соответствовали именно вашему запросу. Если переходите по UTM с конкретным интентом, шаг пропускается автоматически.</p></div>
+      <div class="faq-item"><div class="faq-q">Подбор действительно бесплатный?</div><p class="faq-a">Да. Мы получаем оплату от партнёра за оформленный продукт — никаких скрытых комиссий с клиента.</p></div>
+      <div class="faq-item"><div class="faq-q">Влияет ли заявка на кредитную историю?</div><p class="faq-a">Один запрос в БКИ независимо от количества кредиторов в подборке. Это не «разлетается» по всему рынку.</p></div>
+      <div class="faq-item"><div class="faq-q">Можно ли отказаться от рассылки и продуктов?</div><p class="faq-a">В любой момент. Отписка в один клик из любого письма, удаление профиля — через личный кабинет.</p></div>
+      <div class="faq-item"><div class="faq-q">Что значит «бундл» — займ + страховка со скидкой?</div><p class="faq-a">Партнёр-страховщик предоставляет лучшие условия при оформлении вместе с займом. Мы получаем оплату из договора с партнёром, не от вас.</p></div>
+      <div class="faq-item"><div class="faq-q">Хранятся ли мои данные у вас?</div><p class="faq-a">Только то, что необходимо для подбора и личного кабинета. Согласия на разные цели — раздельные документы (по 152-ФЗ и 156-ФЗ).</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="foot-grid">
+    <div>
+      <div class="logo" style="margin-bottom:16px"><span class="logo-mark">Б</span> Бустра</div>
+      <p style="margin:0;color:var(--ink-2);font-size:14px;line-height:1.6;max-width:340px">Финансовый маркетплейс. Помогаем находить подходящие займы, кредиты, карты, вклады и страховки от 150+ партнёров реестра Банка России.</p>
+      <div class="foot-disc">Бустра — оператор финансового маркетплейса в реестре Банка России. ПСК и условия каждого предложения — на странице партнёра до подачи заявки. Заём — не для постоянного кредитования.</div>
+    </div>
+    <div><h5>Продукты</h5><ul><li>Займы</li><li>Кредиты</li><li>Карты</li><li>Вклады · АСВ</li><li>Страхование</li><li>Бундлы</li></ul></div>
+    <div><h5>Сервис</h5><ul><li>Личный кабинет</li><li>Клуб баллов</li><li>Реферальная программа</li><li>Журнал</li></ul></div>
+    <div><h5>Помощь</h5><ul><li>Поддержка 24/7</li><li>База знаний</li><li>Реестр Банка России</li><li>Раскрытие информации</li></ul></div>
+  </div>
+  <div class="foot-bot">
+    <div class="wrap" style="display:contents">
+      <span>© 2026 Бустра. Все права защищены</span>
+      <span>Маркетплейс — не выдаёт займы напрямую</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Sticky CTA mobile -->
+<div class="sticky-cta">
+  <button class="btn btn-pri btn-block btn-arrow">Подобрать продукт</button>
+</div>
+
+<script>
+  // Tabs
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+      t.classList.add('on');
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.addEventListener('click',()=>{
+      item.classList.toggle('open');
+    });
+  });
+</script>
+</body>
+</html>
