@@ -289,6 +289,43 @@
     .sticky-cta{display:flex;position:fixed;bottom:0;left:0;right:0;background:var(--paper);border-top:1px solid var(--hairline);padding:12px 16px;gap:10px;z-index:50;box-shadow:0 -4px 20px rgba(21,40,44,.06)}
     .sticky-cta button{flex:1}
   }
+
+  /* Soft-pull badges on offer cards */
+  .offer{position:relative}
+  .pull-badge{
+    position:absolute;top:-10px;left:18px;
+    padding:5px 11px;border-radius:7px;
+    font-family:'Manrope',sans-serif;font-weight:800;font-size:11px;
+    letter-spacing:.04em;color:#fff;text-transform:uppercase;
+    box-shadow:0 4px 10px rgba(21,40,44,.12)
+  }
+  .pull-badge.hi{background:#4F7D52}
+  .pull-badge.mid{background:#A87427}
+  .pull-badge.lo{background:var(--ink-3)}
+  .offer.hi-chance{border-color:#BFD8C0}
+  .offer.lo-chance{opacity:.72}
+
+  /* Mobile sticky calculator bar */
+  .sticky-bar{display:none}
+  @media(max-width:980px){
+    .sticky-bar{
+      display:block;position:fixed;top:0;left:0;right:0;z-index:200;
+      background:rgba(255,255,255,.96);backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--hairline);
+      padding:10px 14px;
+      transform:translateY(-110%);
+      transition:transform .35s cubic-bezier(.2,.8,.2,1);
+      box-shadow:0 6px 20px rgba(21,40,44,.08)
+    }
+    .sticky-bar.visible{transform:translateY(0)}
+    .sticky-bar-in{display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:520px;margin:0 auto}
+    .sticky-bar-vals{font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;color:var(--ink);line-height:1.15;flex:1;min-width:0}
+    .sticky-bar-vals .sb-product{font-size:10px;color:var(--primary);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:2px;display:block}
+    .sticky-bar-vals .sb-data{display:block;font-size:13px;color:var(--ink);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .sticky-bar-btn{background:var(--primary);color:#fff;padding:10px 18px;border-radius:999px;font-weight:600;font-size:13px;border:0;cursor:pointer;flex-shrink:0;font-family:inherit}
+    .sticky-bar-btn:active{background:var(--primary-deep)}
+  }
+
 </style>
 </head>
 <body>
@@ -583,7 +620,8 @@
     </div>
 
     <div class="offers">
-      <div class="offer">
+      <div class="offer hi-chance">
+        <span class="pull-badge hi">96% одобрят</span>
         <div class="offer-h"><div class="offer-logo">МД</div><span class="offer-tag">Рекомендуем</span></div>
         <div class="offer-name">МигДеньги</div>
         <div class="offer-rate">0%<small>первый займ — 96% получают одобрение</small></div>
@@ -591,13 +629,15 @@
         <button class="btn btn-sec btn-block btn-arrow offer-cta">Подробнее</button>
       </div>
       <div class="offer">
+        <span class="pull-badge mid">73% одобрят</span>
         <div class="offer-h"><div class="offer-logo">ММ</div><span class="offer-tag hot">Популярно</span></div>
         <div class="offer-name">Манимен</div>
         <div class="offer-rate">0,8%<small>в сутки · ПСК 292% годовых</small></div>
         <div class="offer-meta"><div>Сумма — <b>до 100 000 ₽</b></div><div>Срок — <b>до 126 дней</b></div></div>
         <button class="btn btn-sec btn-block btn-arrow offer-cta">Подробнее</button>
       </div>
-      <div class="offer">
+      <div class="offer lo-chance">
+        <span class="pull-badge lo">31% одобрят</span>
         <div class="offer-h"><div class="offer-logo">КП</div><span class="offer-tag">Гибкий график</span></div>
         <div class="offer-name">КредитПлюс</div>
         <div class="offer-rate">0,5%<small>в сутки · ПСК 182% годовых</small></div>
@@ -612,7 +652,7 @@
     </div>
 
     <div class="psk">
-      <b>Раскрытие по 353-ФЗ:</b> Подбор бесплатный для клиента. Решение по займу принимает партнёр. ПСК у партнёров — от 0% (первый заём) до 292% годовых. Точное значение указывается в карточке партнёра до подачи заявки.
+      <b>Раскрытие по 353-ФЗ:</b> Подбор бесплатный для клиента. Решение по займу принимает партнёр. ПСК у партнёров — от 0% (первый заём) до 292% годовых. Точное значение указывается в карточке партнёра до подачи заявки.<br><br><b>Шанс одобрения</b> рассчитывается по soft-pull данным НБКИ + ОКБ при наличии согласия по 156-ФЗ. Запрос не отображается в кредитной истории.
     </div>
   </div>
 </section>
@@ -732,8 +772,14 @@
   </div>
 </footer>
 
-<div class="sticky-cta">
-  <button class="btn btn-pri btn-block btn-arrow">Оставить заявку</button>
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-bar-in">
+    <div class="sticky-bar-vals" id="stickyVals">
+      <span class="sb-product">Заём</span>
+      <span class="sb-data">25 000 ₽ · 21 день</span>
+    </div>
+    <button class="sticky-bar-btn" onclick="document.querySelector('.form-card').scrollIntoView({behavior:'smooth',block:'start'})">Подать →</button>
+  </div>
 </div>
 
 <script>
@@ -811,6 +857,57 @@
       item.classList.toggle('open');
     });
   });
+
+  // ====== Mobile sticky bar ======
+  (function(){
+    const bar = document.getElementById('stickyBar');
+    const hero = document.querySelector('.hero');
+    if (!bar || !hero) return;
+
+    const PRODUCT_LABELS = {
+      'loan':{person:'Заём',business:'Заём для бизнеса'},
+      'credit':{person:'Кредит',business:'Кредит для бизнеса'},
+      'card':{person:'Карта',business:'Бизнес-карта'},
+      'deposit':{person:'Вклад',business:'Депозит'},
+      'ins':{person:'Страхование',business:'Страхование бизнеса'}
+    };
+
+    function updateStickyVals(){
+      const activeGroup = document.querySelector('.form-panels-group.on');
+      if (!activeGroup) return;
+      const activePanel = activeGroup.querySelector('.form-panel.on');
+      if (!activePanel) return;
+      const prod = activePanel.dataset.prod;
+      const aud = activeGroup.dataset.aud;
+      const productLabel = (PRODUCT_LABELS[prod] && PRODUCT_LABELS[prod][aud]) || 'Подобрать';
+
+      const sliderVals = Array.from(activePanel.querySelectorAll('.slider-val')).map(v=>v.textContent.trim()).filter(Boolean);
+      let dataStr;
+      if (sliderVals.length){
+        dataStr = sliderVals.join(' · ');
+      } else {
+        const chips = Array.from(activePanel.querySelectorAll('.chip.on')).map(c=>c.textContent.trim()).filter(Boolean);
+        dataStr = chips.length ? chips.join(' · ') : 'Готово к подбору';
+      }
+
+      const out = document.getElementById('stickyVals');
+      if (out) out.innerHTML = '<span class="sb-product">'+productLabel+'</span><span class="sb-data">'+dataStr+'</span>';
+    }
+
+    function onScroll(){
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      bar.classList.toggle('visible', heroBottom < 50);
+    }
+
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+
+    // Update bar on form changes
+    document.querySelectorAll('.range').forEach(r=>r.addEventListener('input', updateStickyVals));
+    document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click', ()=>setTimeout(updateStickyVals, 50)));
+    document.querySelectorAll('.product-tab, .aud-btn').forEach(t=>t.addEventListener('click', ()=>setTimeout(updateStickyVals, 100)));
+    updateStickyVals();
+  })();
 </script>
 </body>
 </html>
