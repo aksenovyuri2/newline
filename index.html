@@ -10,7 +10,7 @@
 <style>
   :root{
     --bg:#F4EFE6;--paper:#FFFFFF;--warm:#FAF7F0;
-    --ink:#15282C;--ink-2:#3A4D52;--ink-3:#7A8B8F;--ink-4:#B8C0BD;
+    --ink:#15282C;--ink-2:#3A4D52;--ink-3:#5F6E73;--ink-4:#909A9D;
     --hairline:#DCD3C0;--hairline-2:#E8E1D0;
     --primary:#1F4E5F;--primary-deep:#163A47;--primary-soft:#E5EFF1;--primary-tint:#F1F6F7;
     --copper:#A0876A;--forest:#2D4A30;
@@ -365,22 +365,119 @@
   .form-card.business-mode .product-tabs{display:none}
   .form-card.business-mode .business-product-title{display:flex}
 
+
+  /* === A11y === */
+  :focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:6px}
+  button:focus-visible,a:focus-visible{outline-offset:3px}
+  @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important}}
+  /* Filled slider */
+  .range{background:linear-gradient(to right, var(--primary) 0%, var(--primary) var(--p,40%), var(--hairline) var(--p,40%), var(--hairline) 100%)}
+  /* Hamburger */
+  .nav-burger{display:none;width:42px;height:42px;border-radius:10px;background:transparent;border:1px solid var(--hairline);position:relative;cursor:pointer;flex-shrink:0;transition:background .15s}
+  .nav-burger:hover{background:var(--warm)}
+  .nav-burger::before,.nav-burger::after,.nav-burger span{position:absolute;left:11px;right:11px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .2s,top .25s;content:""}
+  .nav-burger span{top:20px}
+  .nav-burger::before{top:14px}
+  .nav-burger::after{top:26px}
+  .nav-burger.on::before{top:20px;transform:rotate(45deg)}
+  .nav-burger.on span{opacity:0}
+  .nav-burger.on::after{top:20px;transform:rotate(-45deg)}
+  /* Drawer */
+  .mobile-drawer{display:none}
+  .mobile-backdrop{display:none;position:fixed;inset:0;background:rgba(21,40,44,.4);z-index:250;opacity:0;transition:opacity .3s}
+  .mobile-backdrop.on{display:block;opacity:1}
+  @media(max-width:980px){
+    .nav-burger{display:block}
+    .nav-cta .btn{display:none}
+    .mobile-drawer{display:block;position:fixed;top:0;right:0;bottom:0;width:80%;max-width:340px;background:var(--paper);z-index:300;transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);padding:72px 28px 28px;box-shadow:-30px 0 60px rgba(21,40,44,.18);overflow-y:auto}
+    .mobile-drawer.on{transform:translateX(0)}
+    .mobile-drawer a{display:flex;align-items:center;padding:16px 0;font-size:17px;font-weight:600;border-bottom:1px solid var(--hairline);color:var(--ink);min-height:48px}
+    .mobile-drawer a.curr{color:var(--primary)}
+    .mobile-drawer .drawer-sec{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-top:24px;margin-bottom:8px;padding-top:14px;border-top:1px solid var(--hairline)}
+    .mobile-drawer .drawer-cta{margin-top:20px;background:var(--primary);color:#fff;padding:14px;border-radius:12px;text-align:center;font-weight:700;font-size:15px;border:0;width:100%;cursor:pointer;font-family:inherit}
+  }
+  /* Cookie banner */
+  .cookie-banner{position:fixed;bottom:20px;left:20px;right:20px;max-width:480px;margin:0 auto;background:var(--ink);color:#fff;border-radius:14px;padding:18px 22px;display:none;z-index:240;box-shadow:0 16px 40px rgba(21,40,44,.32);font-size:13px;line-height:1.55}
+  .cookie-banner.show{display:block;animation:cb-up .3s ease}
+  @keyframes cb-up{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+  .cookie-banner b{font-weight:700}
+  .cookie-banner a{color:#7AC1D2;text-decoration:underline}
+  .cookie-banner-actions{margin-top:12px;display:flex;gap:10px;justify-content:flex-end}
+  .cookie-banner-actions button{padding:9px 18px;border-radius:999px;font-weight:600;font-size:12.5px;cursor:pointer;border:0;font-family:inherit}
+  .cookie-banner-actions .accept{background:var(--primary);color:#fff}
+  .cookie-banner-actions .decline{background:transparent;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.2)}
+  /* Form progress */
+  .form-progress{display:flex;gap:5px;margin-bottom:16px}
+  .form-progress .pseg{flex:1;height:3px;border-radius:99px;background:var(--hairline);transition:background .3s}
+  .form-progress .pseg.on{background:var(--primary)}
+  .form-progress-label{font-size:11px;color:var(--ink-3);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .form-progress-label span:last-child{color:var(--ink-2);text-transform:none;letter-spacing:0;font-weight:500;font-size:11px}
+  /* Form consent */
+  .form-consent{display:flex;gap:10px;align-items:flex-start;padding:14px 0 0;font-size:11.5px;color:var(--ink-3);line-height:1.5;border-top:1px solid var(--hairline-2);margin-top:14px}
+  .form-consent input{width:18px;height:18px;margin-top:2px;accent-color:var(--primary);flex-shrink:0;cursor:pointer}
+  .form-consent label{cursor:pointer;line-height:1.5}
+  .form-consent a{color:var(--primary);font-weight:600;border-bottom:1px solid rgba(31,78,95,.3)}
+  .form-cta:disabled{opacity:.5;cursor:not-allowed;pointer-events:none}
+  /* News consent */
+  .news-consent{display:flex;gap:8px;align-items:flex-start;margin-top:12px;font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.5;position:relative}
+  .news-consent input{width:16px;height:16px;margin-top:1px;accent-color:var(--primary);cursor:pointer;flex-shrink:0}
+  .news-consent label{cursor:pointer}
+  .news-consent a{color:#7AC1D2}
+  /* Tabs disabled */
+  .tab.disabled{opacity:.55;cursor:not-allowed;pointer-events:none}
+  .tab.disabled::after{content:" · скоро";font-size:9.5px;opacity:.65;font-weight:500;letter-spacing:.04em}
+  /* Sponsored layout */
+  .offer.sponsored{padding-top:30px}
+  .offer.sponsored .sponsored-marker{position:absolute;top:-10px;left:18px;right:auto;z-index:2}
+  .offer.sponsored .pull-badge{top:-10px;left:auto;right:18px}
+  /* Touch targets */
+  @media(max-width:980px){
+    .product-tab{min-height:50px;padding:12px 6px}
+    .aud-btn{padding:10px 22px;min-height:42px}
+    .chip{padding:10px 14px;font-size:13.5px;min-height:42px}
+    .tab{padding:11px 18px;min-height:44px;font-size:13.5px}
+    .faq-q{padding:8px 0;min-height:44px}
+    .form-cta{min-height:52px}
+  }
+  /* Hero bullets compact mobile */
+  @media(max-width:980px){
+    .hero-bullets{display:flex !important;flex-wrap:wrap;gap:8px;max-width:none;margin-top:6px}
+    .hero-bullet{background:var(--paper);border:1px solid var(--hairline);border-radius:999px;padding:7px 13px 7px 9px;gap:8px;grid-template-columns:auto auto}
+    .hero-bullet-mark{width:24px;height:24px;font-size:12px}
+    .hero-bullet-text{display:flex;flex-direction:column}
+    .hero-bullet-text b{font-size:12.5px;margin:0;font-weight:700}
+    .hero-bullet-text span{display:none}
+  }
+  /* Sticky-bar smooth */
+  @media(max-width:980px){.sticky-bar{top:54px;border-radius:0 0 14px 14px;left:8px;right:8px}}
+  .sticky-bar{transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .25s}
+  .sticky-bar:not(.visible){opacity:0;pointer-events:none}
+  /* Tooltip */
+  abbr[title]{text-decoration:underline dotted;text-underline-offset:3px;cursor:help;font-weight:600}
+  /* Hover boost */
+  .offer:hover,.prod:hover{transform:translateY(-4px)}
+  /* Avatar */
+  .rev-av{width:42px;height:42px;font-size:14px}
+  /* License primary */
+  .license-tag.primary{background:var(--primary);color:#fff;border-color:var(--primary);display:inline-flex;align-items:center;gap:6px}
+  .license-tag.primary::before{content:"●";color:#7AC1D2;font-size:8px}
+
 </style>
 </head>
 <body>
 
 <div class="top">
   <div class="top-in">
-    <div>В реестре <b>Банка России</b> · 150+ партнёров · подбор бесплатный</div>
+    <div>📞 <b>8 800 555 35 35</b> · бесплатно по России</div>
     <div><a>Поддержка 24/7</a> · <a>Журнал</a> · <a>Войти →</a></div>
   </div>
 </div>
 
 <nav class="nav">
   <div class="nav-in">
-    <div class="logo"><span class="logo-mark">Б</span> Бустра</div>
-    <div class="nav-links">
-      <a class="curr">Главная</a>
+    <div class="logo"><span class="logo-mark" aria-hidden="true">Б</span> Бустра</div>
+    <div class="nav-links" role="navigation">
+      <a class="curr" aria-current="page">Главная</a>
       <a>Займы</a>
       <a>Кредиты</a>
       <a>Карты</a>
@@ -390,13 +487,31 @@
     <div class="nav-cta">
       <button class="btn btn-ghost">Кабинет</button>
       <button class="btn btn-sec">Войти</button>
+      <button class="nav-burger" id="navBurger" aria-label="Открыть меню" aria-expanded="false"><span></span></button>
     </div>
   </div>
 </nav>
+<div class="mobile-backdrop" id="mobBackdrop" aria-hidden="true"></div>
+<aside class="mobile-drawer" id="mobDrawer" role="navigation" aria-label="Мобильное меню">
+  <a class="curr" aria-current="page">Главная</a>
+  <a>Займы</a>
+  <a>Кредиты</a>
+  <a>Карты</a>
+  <a>Вклады</a>
+  <a>Страхование</a>
+  <a>Журнал</a>
+  <div class="drawer-sec">Аккаунт</div>
+  <a>Войти / Регистрация</a>
+  <a>Личный кабинет</a>
+  <div class="drawer-sec">Помощь</div>
+  <a>Поддержка 24/7</a>
+  <a>База знаний</a>
+  <button class="drawer-cta">Подобрать продукт →</button>
+</aside>
 
 <section class="hero">
   <div class="wrap hero-inner">
-    <div class="hero-eyebrow">Шаг 1 · меньше минуты</div>
+    <div class="hero-eyebrow">Около минуты · 3 простых шага</div>
 
     <div class="hero-grid">
       <div class="hero-text">
@@ -421,8 +536,16 @@
 
       <div class="form-card">
         <div class="form-card-h">
-          <h3>Оставить заявку</h3>
-          <span class="step">Шаг 1 / 3</span>
+          <h3>Параметры подбора</h3>
+        </div>
+        <div class="form-progress-label">
+          <span>Шаг 1 из 3</span>
+          <span>Параметры · Контакты · Подтверждение</span>
+        </div>
+        <div class="form-progress" aria-hidden="true">
+          <span class="pseg on"></span>
+          <span class="pseg"></span>
+          <span class="pseg"></span>
         </div>
 
         <div class="aud-switch" role="tablist" aria-label="Тип клиента">
@@ -435,11 +558,11 @@
         </div>
 
         <div class="product-tabs" role="tablist">
-          <button class="product-tab on" data-prod="loan" role="tab"><span class="ico">⌖</span><span class="lab">Заём</span></button>
-          <button class="product-tab" data-prod="credit" role="tab"><span class="ico">◐</span><span class="lab">Кредит</span></button>
-          <button class="product-tab" data-prod="card" role="tab"><span class="ico">◊</span><span class="lab">Карта</span></button>
-          <button class="product-tab" data-prod="deposit" role="tab"><span class="ico">↑</span><span class="lab" data-person-label="Вклад" data-business-label="Депозит">Вклад</span></button>
-          <button class="product-tab" data-prod="ins" role="tab"><span class="ico">⌂</span><span class="lab">Страх.</span></button>
+          <button class="product-tab on" data-prod="loan" role="tab" aria-selected="true"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 10c0-1 1-1.5 3-1.5s3 .5 3 2-2 1.5-3 1.5-3 0-3 1.5 1 2 3 2 3-.5 3-1.5"/></svg></span><span class="lab">Заём</span></button>
+          <button class="product-tab" data-prod="credit" role="tab" aria-selected="false"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10M9 21V10M13 21V10M17 21V10M19 21V10M3 10l9-7 9 7"/></svg></span><span class="lab">Кредит</span></button>
+          <button class="product-tab" data-prod="card" role="tab" aria-selected="false"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span><span class="lab">Карта</span></button>
+          <button class="product-tab" data-prod="deposit" role="tab" aria-selected="false"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4M5 11l7-7 7 7"/></svg></span><span class="lab" data-person-label="Вклад" data-business-label="Депозит">Вклад</span></button>
+          <button class="product-tab" data-prod="ins" role="tab" aria-selected="false"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="lab">Страх.</span></button>
         </div>
 
         <!-- PERSON panels -->
@@ -577,9 +700,9 @@
 
         </div>
 
-        <div class="form-foot">
-          <span>○</span>
-          <div>Отправляя заявку, вы соглашаетесь с <a>политикой обработки данных</a> и <a>пользовательским соглашением</a>. Один запрос в БКИ независимо от количества подборок.</div>
+        <div class="form-consent">
+          <input type="checkbox" id="formConsent" checked>
+          <label for="formConsent">Согласен с <a>политикой обработки персональных данных</a> и <a>пользовательским соглашением</a> по 152-ФЗ. Один запрос в БКИ независимо от подборок.</label>
         </div>
       </div>
     </div>
@@ -649,42 +772,40 @@
       <a class="sec-link">Все 150+ предложений</a>
     </div>
 
-    <div class="tabs">
-      <button class="tab on">Займы</button>
-      <button class="tab">Кредиты</button>
-      <button class="tab">Кредитные карты</button>
-      <button class="tab">Дебетовые карты</button>
-      <button class="tab">Вклады</button>
-      <button class="tab">Облигации</button>
-      <button class="tab">ОСАГО</button>
-      <button class="tab">КАСКО</button>
-      <button class="tab">Ипотека</button>
-      <button class="tab">Автокредиты</button>
+    <div class="tabs" role="tablist">
+      <button class="tab on" role="tab" aria-selected="true">Займы</button>
+      <button class="tab disabled" disabled aria-disabled="true">Кредиты</button>
+      <button class="tab disabled" disabled aria-disabled="true">Кредитные карты</button>
+      <button class="tab disabled" disabled aria-disabled="true">Дебетовые карты</button>
+      <button class="tab disabled" disabled aria-disabled="true">Вклады</button>
+      <button class="tab disabled" disabled aria-disabled="true">ОСАГО</button>
+      <button class="tab disabled" disabled aria-disabled="true">КАСКО</button>
+      <button class="tab disabled" disabled aria-disabled="true">Ипотека</button>
     </div>
 
     <div class="offers">
       <div class="offer sponsored hi-chance">
         <span class="sponsored-marker">Партнёрское предложение</span>
-        <span class="pull-badge hi">96% одобрят</span>
+        <span class="pull-badge hi" role="status" aria-label="Шанс одобрения 96 процентов">96% одобрят</span>
         <div class="offer-h"><div class="offer-logo">МД</div><span class="offer-tag">Гарантия партнёра</span></div>
         <div class="offer-name">МигДеньги</div>
-        <div class="offer-rate">0%<small>первый займ — 96% получают одобрение</small></div>
+        <div class="offer-rate">0%<small>ПСК годовых · первый заём до 30 000 ₽</small></div>
         <div class="offer-meta"><div>Сумма — <b>до 30 000 ₽</b></div><div>Срок — <b>до 30 дней</b></div></div>
         <button class="btn btn-sec btn-block btn-arrow offer-cta">Подробнее</button>
       </div>
       <div class="offer">
-        <span class="pull-badge mid">73% одобрят</span>
+        <span class="pull-badge mid" role="status" aria-label="Шанс одобрения 73 процента">73% одобрят</span>
         <div class="offer-h"><div class="offer-logo">ММ</div><span class="offer-tag hot">Популярно</span></div>
         <div class="offer-name">Манимен</div>
-        <div class="offer-rate">0,8%<small>в сутки · ПСК 292% годовых</small></div>
+        <div class="offer-rate">292%<small>ПСК годовых · 0,8%/день</small></div>
         <div class="offer-meta"><div>Сумма — <b>до 100 000 ₽</b></div><div>Срок — <b>до 126 дней</b></div></div>
         <button class="btn btn-sec btn-block btn-arrow offer-cta">Подробнее</button>
       </div>
       <div class="offer lo-chance">
-        <span class="pull-badge lo">31% одобрят</span>
+        <span class="pull-badge lo" role="status" aria-label="Шанс одобрения 31 процент">31% одобрят</span>
         <div class="offer-h"><div class="offer-logo">КП</div><span class="offer-tag">Гибкий график</span></div>
         <div class="offer-name">КредитПлюс</div>
-        <div class="offer-rate">0,5%<small>в сутки · ПСК 182% годовых</small></div>
+        <div class="offer-rate">182%<small>ПСК годовых · 0,5%/день</small></div>
         <div class="offer-meta"><div>Сумма — <b>до 50 000 ₽</b></div><div>Срок — <b>до 60 дней</b></div></div>
         <button class="btn btn-sec btn-block btn-arrow offer-cta">Подробнее</button>
       </div>
@@ -743,7 +864,7 @@
       <div>
         <h3>В реестре финансовых маркетплейсов <em>Банка России</em></h3>
         <p>С 2018 года помогаем находить подходящие финансовые продукты. Все партнёры проходят проверку требованиям Банка России и профильных законов.</p>
-        <div class="license-tags"><span class="license-tag">В реестре ЦБ РФ</span><span class="license-tag">353-ФЗ</span><span class="license-tag">156-ФЗ</span><span class="license-tag">152-ФЗ</span></div>
+        <div class="license-tags"><span class="license-tag primary">В реестре ЦБ РФ</span><span class="license-tag">353-ФЗ</span><span class="license-tag">156-ФЗ</span><span class="license-tag">152-ФЗ</span></div>
       </div>
       <div class="rate-list">
         <div class="rate-item"><div class="nm">Banki.ru<small>12 034 отзыва</small></div><div style="display:flex;align-items:center;gap:12px"><div class="stars">★★★★★</div><div class="val">4,8</div></div></div>
@@ -768,10 +889,16 @@
         <h3>Подборка раз в неделю —<br>тихая, по делу</h3>
         <p>Только реальные предложения партнёров и важные новости. Без рекламного шума и спама. Можно отписаться в один клик.</p>
       </div>
-      <form class="news-form" onsubmit="event.preventDefault()">
-        <input type="email" placeholder="Ваш email">
-        <button type="submit">Подписаться</button>
-      </form>
+      <div>
+        <form class="news-form" onsubmit="event.preventDefault()">
+          <input type="email" placeholder="Ваш email" id="newsEmail" required>
+          <button type="submit" id="newsSubmit">Подписаться</button>
+        </form>
+        <div class="news-consent">
+          <input type="checkbox" id="newsConsent">
+          <label for="newsConsent">Согласен на получение информационной рассылки. Можно отписаться в один клик.</label>
+        </div>
+      </div>
     </div>
 
     <div class="trust-ribbon">
@@ -807,7 +934,7 @@
       <div class="foot-disc">Бустра — оператор финансового маркетплейса в реестре Банка России. ПСК и условия каждого предложения — на странице партнёра до подачи заявки. Заём — не для постоянного кредитования.</div>
     </div>
     <div><h5>Физлицам</h5><ul><li>Займы</li><li>Кредиты</li><li>Карты</li><li>Вклады · АСВ</li><li>Страхование</li></ul></div>
-    <div><h5>Бизнесу</h5><ul><li>Бизнес-займы</li><li>Кредиты для бизнеса</li><li>Бизнес-карты</li><li>Депозиты юрлиц</li><li>Страхование бизнеса</li></ul></div>
+    <div><h5>Бизнесу</h5><ul><li>Кредит для бизнеса</li><li style="opacity:.55">Бизнес-карты · скоро</li><li style="opacity:.55">Депозиты юрлиц · скоро</li><li style="opacity:.55">Бизнес-займы · скоро</li><li style="opacity:.55">Страхование бизнеса · скоро</li></ul></div>
     <div><h5>Помощь</h5><ul><li>Поддержка 24/7</li><li>База знаний</li><li>Реестр Банка России</li><li>Раскрытие информации</li></ul></div>
   </div>
   <div class="foot-bot">
@@ -815,6 +942,14 @@
     <span>Маркетплейс — не выдаёт займы напрямую</span>
   </div>
 </footer>
+
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Уведомление о cookie">
+  <b>Сайт использует cookies</b> для подбора предложений, аналитики и трекинга качества. Подробнее — в <a>политике конфиденциальности</a>.
+  <div class="cookie-banner-actions">
+    <button class="decline" id="cookieDecline">Только необходимые</button>
+    <button class="accept" id="cookieAccept">Принять все</button>
+  </div>
+</div>
 
 <div class="sticky-bar" id="stickyBar">
   <div class="sticky-bar-in">
@@ -910,6 +1045,82 @@
   document.querySelectorAll('.faq-item').forEach(item=>{
     item.addEventListener('click',()=>{
       item.classList.toggle('open');
+    });
+  });
+
+  // Hamburger menu
+  (function(){
+    const burger = document.getElementById('navBurger');
+    const drawer = document.getElementById('mobDrawer');
+    const backdrop = document.getElementById('mobBackdrop');
+    if (!burger || !drawer) return;
+    function toggle(open){
+      burger.classList.toggle('on', open);
+      drawer.classList.toggle('on', open);
+      backdrop.classList.toggle('on', open);
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    burger.addEventListener('click',()=>toggle(!drawer.classList.contains('on')));
+    backdrop.addEventListener('click',()=>toggle(false));
+    drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggle(false)));
+    document.querySelector('.drawer-cta')?.addEventListener('click',()=>{toggle(false);document.querySelector('.form-card')?.scrollIntoView({behavior:'smooth'})});
+  })();
+
+  // Cookie banner
+  (function(){
+    const b = document.getElementById('cookieBanner');
+    if (!b) return;
+    if (!localStorage.getItem('boostra_cookie')){
+      setTimeout(()=>b.classList.add('show'), 1200);
+    }
+    document.getElementById('cookieAccept')?.addEventListener('click',()=>{
+      localStorage.setItem('boostra_cookie','all');b.classList.remove('show');
+    });
+    document.getElementById('cookieDecline')?.addEventListener('click',()=>{
+      localStorage.setItem('boostra_cookie','necessary');b.classList.remove('show');
+    });
+  })();
+
+  // Slider filled track
+  function updateSliderFill(input){
+    const min = parseFloat(input.min || 0);
+    const max = parseFloat(input.max || 100);
+    const val = parseFloat(input.value);
+    const pct = ((val - min) / (max - min)) * 100;
+    input.style.setProperty('--p', pct + '%');
+  }
+  document.querySelectorAll('.range').forEach(r=>{
+    updateSliderFill(r);
+    r.addEventListener('input',()=>updateSliderFill(r));
+  });
+
+  // Form consent gate
+  (function(){
+    const consent = document.getElementById('formConsent');
+    if (!consent) return;
+    function syncCTA(){
+      document.querySelectorAll('.form-cta').forEach(b=>{b.disabled = !consent.checked});
+    }
+    consent.addEventListener('change', syncCTA);
+    syncCTA();
+  })();
+
+  // News consent gate
+  (function(){
+    const cb = document.getElementById('newsConsent');
+    const btn = document.getElementById('newsSubmit');
+    if (!cb || !btn) return;
+    function sync(){btn.style.opacity = cb.checked ? '1' : '.5';btn.disabled = !cb.checked}
+    cb.addEventListener('change', sync);
+    sync();
+  })();
+
+  // ARIA selected on product-tabs
+  document.querySelectorAll('.product-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      document.querySelectorAll('.product-tab').forEach(t=>t.setAttribute('aria-selected','false'));
+      tab.setAttribute('aria-selected','true');
     });
   });
 
