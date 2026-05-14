@@ -54,10 +54,7 @@
   .btn-block{display:flex;width:100%}
   .btn-lg{padding:15px 28px;font-size:15px}
 
-  /* Tinkoff ID — nav */
-  .btn-tid-nav{background:#000;color:var(--tinkoff);padding:9px 14px 9px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:13px;letter-spacing:-.005em;transition:all .18s;border:0;cursor:pointer}
-  .btn-tid-nav:hover{background:#1a1a1a;transform:translateY(-1px)}
-  .btn-tid-nav .tlogo{width:20px;height:20px;border-radius:5px;background:var(--tinkoff);color:#000;display:grid;place-items:center;font-weight:900;font-size:13px;font-family:'Manrope',sans-serif}
+  
 
   /* HERO */
   .hero{padding:28px 0 36px;position:relative;overflow:hidden}
@@ -120,13 +117,6 @@
   .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 
   .form-cta{margin-top:14px}
-
-  /* Tinkoff ID button */
-  .tid-divider{display:flex;align-items:center;gap:12px;margin:14px 0;color:var(--ink-3);font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.1em}
-  .tid-divider::before,.tid-divider::after{content:"";flex:1;height:1px;background:var(--hairline)}
-  .btn-tinkoff{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--tinkoff);color:#000;padding:14px 22px;border-radius:12px;font-weight:700;font-size:14px;width:100%;border:0;cursor:pointer;font-family:inherit;transition:all .18s}
-  .btn-tinkoff:hover{background:var(--tinkoff-deep);transform:translateY(-1px);box-shadow:0 8px 20px rgba(255,221,45,.32)}
-  .btn-tinkoff .tlogo{width:24px;height:24px;border-radius:6px;background:#000;display:grid;place-items:center;color:var(--tinkoff);font-weight:900;font-size:14px;font-family:'Manrope',sans-serif}
 
   .form-foot{margin-top:14px;padding-top:14px;border-top:1px solid var(--hairline-2);font-size:11.5px;color:var(--ink-3);line-height:1.5;display:flex;align-items:flex-start;gap:8px}
   .form-foot a{color:var(--primary);font-weight:600}
@@ -271,8 +261,6 @@
     .top-in{justify-content:center;font-size:11px}
     .top-in > div:last-child{display:none}
     .nav-cta .btn-ghost{display:none}
-    .btn-tid-nav{padding:7px 12px 7px 8px;font-size:12px}
-    .btn-tid-nav .tlogo{width:18px;height:18px;font-size:11px}
     .hero{padding:20px 0 28px}
     .hero-grid{grid-template-columns:1fr;gap:24px}
     .hero-text h1{font-size:32px}
@@ -325,9 +313,7 @@
     </div>
     <div class="nav-cta">
       <button class="btn btn-ghost">Кабинет</button>
-      <button class="btn-tid-nav" aria-label="Войти через Тинькофф ID">
-        <span class="tlogo">T</span><span>Тинькофф&nbsp;ID</span>
-      </button>
+      <button class="btn btn-sec">Войти</button>
     </div>
   </div>
 </nav>
@@ -391,8 +377,6 @@
               <input type="range" class="range" min="7" max="180" step="1" value="21" data-target="pLoanT" data-unit="day">
             </div>
             <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Изучить варианты</button>
-            <div class="tid-divider">или</div>
-            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф ID</button>
           </div>
 
           <div class="form-panel" data-prod="credit">
@@ -407,8 +391,6 @@
               <input type="range" class="range" min="6" max="84" step="1" value="24" data-target="pCredT" data-unit="month">
             </div>
             <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Изучить варианты</button>
-            <div class="tid-divider">или</div>
-            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф ID</button>
           </div>
 
           <div class="form-panel" data-prod="card">
@@ -421,8 +403,6 @@
               <div class="chips"><button class="chip on">Кэшбэк</button><button class="chip">Без процентов</button><button class="chip">Путешествия</button><button class="chip">Премиум</button></div>
             </div>
             <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Подобрать карту</button>
-            <div class="tid-divider">или</div>
-            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф ID</button>
           </div>
 
           <div class="form-panel" data-prod="deposit">
@@ -437,8 +417,6 @@
               <input type="range" class="range" min="3" max="36" step="1" value="6" data-target="pDepT" data-unit="month">
             </div>
             <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Найти вклад</button>
-            <div class="tid-divider">или</div>
-            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф ID</button>
           </div>
 
           <div class="form-panel" data-prod="ins">
@@ -447,8 +425,6 @@
               <div class="chips"><button class="chip on">ОСАГО</button><button class="chip">КАСКО</button><button class="chip">Жильё</button><button class="chip">Ипотека</button><button class="chip">Жизнь и здоровье</button></div>
             </div>
             <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Рассчитать</button>
-            <div class="tid-divider">или</div>
-            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф ID</button>
           </div>
 
         </div>
@@ -468,8 +444,6 @@
               <input type="range" class="range" min="1" max="12" step="1" value="6" data-target="bLoanT" data-unit="month">
             </div>
             <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Изучить варианты для бизнеса</button>
-            <div class="tid-divider">или</div>
-            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф Бизнес</button>
           </div>
 
           <div class="form-panel" data-prod="credit">
@@ -484,8 +458,6 @@
               <input type="range" class="range" min="6" max="84" step="1" value="36" data-target="bCredT" data-unit="month">
             </div>
             <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Найти кредит для бизнеса</button>
-            <div class="tid-divider">или</div>
-            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф Бизнес</button>
           </div>
 
           <div class="form-panel" data-prod="card">
@@ -499,8 +471,6 @@
               <input type="range" class="range" min="50000" max="3000000" step="50000" value="300000" data-target="bCardL" data-suffix=" ₽">
             </div>
             <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Подобрать бизнес-карту</button>
-            <div class="tid-divider">или</div>
-            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф Бизнес</button>
           </div>
 
           <div class="form-panel" data-prod="deposit">
@@ -515,8 +485,6 @@
               <input type="range" class="range" min="1" max="36" step="1" value="12" data-target="bDepT" data-unit="month">
             </div>
             <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Найти депозит для бизнеса</button>
-            <div class="tid-divider">или</div>
-            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф Бизнес</button>
           </div>
 
           <div class="form-panel" data-prod="ins">
@@ -525,8 +493,6 @@
               <div class="chips"><button class="chip on">Имущество</button><button class="chip">Ответственность</button><button class="chip">Сотрудники</button><button class="chip">Транспорт</button><button class="chip">Грузы</button></div>
             </div>
             <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Рассчитать для бизнеса</button>
-            <div class="tid-divider">или</div>
-            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф Бизнес</button>
           </div>
 
         </div>
@@ -740,7 +706,6 @@
       </div>
     </div>
     <div class="faq">
-      <div class="faq-item"><div class="faq-q">Зачем нужен Тинькофф ID?</div><p class="faq-a">Если у вас есть аккаунт в Тинькофф, авторизация через Тинькофф ID заполнит данные автоматически — без ручного ввода и SMS. Пароль остаётся у Тинькофф, нам передаются только подтверждённые данные.</p></div>
       <div class="faq-item"><div class="faq-q">Чем отличается заявка для бизнеса?</div><p class="faq-a">Для бизнеса доступны другие диапазоны сумм и сроков, а также специфические продукты (бизнес-карта, депозит для юрлиц, страхование бизнеса). Партнёры — банки, работающие с ИП и ООО.</p></div>
       <div class="faq-item"><div class="faq-q">Подбор действительно бесплатный?</div><p class="faq-a">Да. Мы получаем оплату от партнёра за оформленный продукт — никаких скрытых комиссий с клиента.</p></div>
       <div class="faq-item"><div class="faq-q">Влияет ли заявка на кредитную историю?</div><p class="faq-a">Один запрос в БКИ независимо от количества кредиторов в подборке. Это не «разлетается» по всему рынку.</p></div>
