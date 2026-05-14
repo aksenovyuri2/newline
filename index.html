@@ -9,29 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#F4EFE6;
-    --paper:#FFFFFF;
-    --warm:#FAF7F0;
-    --ink:#15282C;
-    --ink-2:#3A4D52;
-    --ink-3:#7A8B8F;
-    --ink-4:#B8C0BD;
-    --hairline:#DCD3C0;
-    --hairline-2:#E8E1D0;
-    --primary:#1F4E5F;
-    --primary-deep:#163A47;
-    --primary-soft:#E5EFF1;
-    --primary-tint:#F1F6F7;
-    --copper:#A0876A;
-    --copper-soft:#F0E8D9;
-    --forest:#2D4A30;
-    --forest-soft:#E0E8DD;
+    --bg:#F4EFE6;--paper:#FFFFFF;--warm:#FAF7F0;
+    --ink:#15282C;--ink-2:#3A4D52;--ink-3:#7A8B8F;--ink-4:#B8C0BD;
+    --hairline:#DCD3C0;--hairline-2:#E8E1D0;
+    --primary:#1F4E5F;--primary-deep:#163A47;--primary-soft:#E5EFF1;--primary-tint:#F1F6F7;
+    --copper:#A0876A;--forest:#2D4A30;
+    --tinkoff:#FFDD2D;--tinkoff-deep:#FFD000;
     --shadow-1:0 1px 2px rgba(21,40,44,.04);
     --shadow-2:0 12px 32px rgba(21,40,44,.06);
     --shadow-3:0 28px 64px rgba(21,40,44,.10);
   }
-  *{box-sizing:border-box}html,body{margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  *{box-sizing:border-box}html,body{margin:0;padding:0}html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--ink);font-family:'Inter',ui-sans-serif,system-ui,sans-serif;font-size:15.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
@@ -39,14 +27,12 @@
   .display{font-family:'Manrope',sans-serif;font-weight:800;letter-spacing:-.025em;line-height:.98;color:var(--ink)}
   .display em{font-style:normal;color:var(--primary)}
 
-  /* Top bar */
   .top{font-size:11.5px;color:var(--ink-3);border-bottom:1px solid var(--hairline)}
   .top-in{max-width:1240px;margin:0 auto;padding:6px 28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center}
   .top-in b{color:var(--ink-2);font-weight:600}
   .top a{color:var(--ink-2);transition:color .18s}
   .top a:hover{color:var(--primary)}
 
-  /* Nav */
   .nav{position:sticky;top:0;background:rgba(244,239,230,.96);backdrop-filter:blur(8px);z-index:90;border-bottom:1px solid var(--hairline)}
   .nav-in{max-width:1240px;margin:0 auto;padding:11px 28px;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center}
   .logo{display:flex;align-items:center;gap:11px;font-family:'Manrope',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.025em}
@@ -56,7 +42,6 @@
   .nav-links a.curr{color:var(--primary);font-weight:600}
   .nav-cta{display:flex;gap:10px;align-items:center}
 
-  /* Buttons */
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:11px 22px;border-radius:999px;font-weight:600;font-size:14px;transition:all .18s ease;font-family:inherit;border:1px solid transparent}
   .btn-pri{background:var(--primary);color:#fff}
   .btn-pri:hover{background:var(--primary-deep);transform:translateY(-1px);box-shadow:0 8px 20px rgba(31,78,95,.22)}
@@ -69,13 +54,16 @@
   .btn-block{display:flex;width:100%}
   .btn-lg{padding:15px 28px;font-size:15px}
 
-  /* ============================================================
-     HERO with APPLICATION FORM
-     ============================================================ */
-  .hero{padding:32px 0 36px;position:relative;overflow:hidden}
+  /* Tinkoff ID — nav */
+  .btn-tid-nav{background:#000;color:var(--tinkoff);padding:9px 14px 9px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:13px;letter-spacing:-.005em;transition:all .18s;border:0;cursor:pointer}
+  .btn-tid-nav:hover{background:#1a1a1a;transform:translateY(-1px)}
+  .btn-tid-nav .tlogo{width:20px;height:20px;border-radius:5px;background:var(--tinkoff);color:#000;display:grid;place-items:center;font-weight:900;font-size:13px;font-family:'Manrope',sans-serif}
+
+  /* HERO */
+  .hero{padding:28px 0 36px;position:relative;overflow:hidden}
   .hero::before{content:"";position:absolute;left:60%;top:-10%;width:55vw;height:60%;background:radial-gradient(closest-side,rgba(31,78,95,.07),transparent 70%);pointer-events:none}
   .hero-inner{position:relative}
-  .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;color:var(--primary);font-weight:600;letter-spacing:.02em;margin-bottom:16px}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;color:var(--primary);font-weight:600;letter-spacing:.02em;margin-bottom:14px}
   .hero-eyebrow::before{content:"";width:24px;height:1px;background:var(--primary)}
   .hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:start}
   .hero-text h1{font-size:clamp(36px,4.6vw,58px);margin:0 0 18px;line-height:1.04}
@@ -83,75 +71,67 @@
   .hero-text .lead em{color:var(--ink);font-style:normal;font-weight:600}
   .hero-bullets{display:grid;gap:14px;max-width:440px}
   .hero-bullet{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
-  .hero-bullet-mark{
-    width:36px;height:36px;border-radius:50%;
-    background:var(--primary-soft);color:var(--primary);
-    display:grid;place-items:center;flex-shrink:0;font-size:16px;font-weight:700
-  }
+  .hero-bullet-mark{width:36px;height:36px;border-radius:50%;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;flex-shrink:0;font-size:16px;font-weight:700}
   .hero-bullet-text b{font-weight:700;font-size:14.5px;color:var(--ink);display:block;margin-bottom:2px;letter-spacing:-.005em}
   .hero-bullet-text span{font-size:13px;color:var(--ink-3);line-height:1.5}
 
-  /* Application form card */
-  .form-card{
-    background:var(--paper);border:1px solid var(--hairline);
-    border-radius:24px;padding:24px;
-    box-shadow:var(--shadow-3);position:relative
-  }
-  .form-card-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+  /* Form card */
+  .form-card{background:var(--paper);border:1px solid var(--hairline);border-radius:24px;padding:24px;box-shadow:var(--shadow-3);position:relative}
+  .form-card-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
   .form-card-h h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;letter-spacing:-.015em;margin:0}
   .form-card-h .step{font-size:11.5px;color:var(--ink-3);font-weight:500}
 
-  /* Product tabs (chip-style) */
-  .product-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:20px;background:var(--warm);padding:6px;border-radius:14px;border:1px solid var(--hairline-2)}
-  .product-tab{
-    padding:10px 8px;border-radius:10px;
-    background:transparent;color:var(--ink-3);
-    display:flex;flex-direction:column;align-items:center;gap:4px;
-    transition:all .18s;font-family:inherit;cursor:pointer
-  }
+  /* Audience switcher */
+  .aud-switch{display:inline-flex;background:var(--warm);border:1px solid var(--hairline-2);border-radius:999px;padding:4px;gap:2px;margin-bottom:16px}
+  .aud-btn{padding:7px 18px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--ink-3);transition:all .18s;font-family:inherit;cursor:pointer;border:0;background:none}
+  .aud-btn.on{background:var(--primary);color:#fff;box-shadow:0 3px 8px rgba(31,78,95,.18)}
+  .aud-btn:hover:not(.on){color:var(--ink)}
+
+  /* Product tabs */
+  .product-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:18px;background:var(--warm);padding:6px;border-radius:14px;border:1px solid var(--hairline-2)}
+  .product-tab{padding:10px 8px;border-radius:10px;background:transparent;color:var(--ink-3);display:flex;flex-direction:column;align-items:center;gap:4px;transition:all .18s;font-family:inherit;cursor:pointer}
   .product-tab:hover{color:var(--ink)}
   .product-tab.on{background:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(31,78,95,.18)}
   .product-tab .ico{font-size:16px;line-height:1}
   .product-tab .lab{font-size:11px;font-weight:600;letter-spacing:-.005em}
 
-  /* Form panels (one per product) */
-  .form-panels{position:relative;min-height:300px}
+  /* Form panels */
+  .form-panels-group{display:none}
+  .form-panels-group.on{display:block}
   .form-panel{display:none}
   .form-panel.on{display:block;animation:fadeIn .25s ease}
   @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 
-  /* Field label + chips */
-  .form-row{margin-bottom:14px}
+  /* Slider row */
+  .form-row{margin-bottom:16px}
   .form-row .lab{font-size:11.5px;color:var(--ink-3);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;display:block}
+  .slider-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+  .slider-val{font-family:'Manrope',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.025em;color:var(--ink);line-height:1}
+  .slider-bounds{font-size:11px;color:var(--ink-3);font-weight:500}
+  .range{-webkit-appearance:none;appearance:none;width:100%;height:3px;border-radius:3px;background:var(--hairline);outline:0}
+  .range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid var(--primary);cursor:pointer;box-shadow:0 4px 10px rgba(31,78,95,.3);transition:transform .15s}
+  .range::-webkit-slider-thumb:hover{transform:scale(1.1)}
+  .range::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid var(--primary);cursor:pointer;box-shadow:0 4px 10px rgba(31,78,95,.3)}
+
+  /* Chips */
   .chips{display:flex;gap:6px;flex-wrap:wrap}
-  .chip{
-    padding:8px 13px;border-radius:10px;
-    background:var(--warm);color:var(--ink-2);
-    border:1px solid var(--hairline);
-    font-size:13px;font-weight:600;
-    transition:all .15s;cursor:pointer
-  }
+  .chip{padding:8px 13px;border-radius:10px;background:var(--warm);color:var(--ink-2);border:1px solid var(--hairline);font-size:13px;font-weight:600;transition:all .15s;cursor:pointer}
   .chip:hover{border-color:var(--ink-3);color:var(--ink)}
   .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 
-  /* Phone input */
-  .phone-input{
-    height:50px;width:100%;
-    border:1.5px solid var(--hairline);border-radius:12px;
-    padding:0 16px;background:var(--paper);
-    font-family:inherit;font-size:15px;font-weight:500;color:var(--ink);
-    outline:none;transition:border .18s
-  }
-  .phone-input:focus{border-color:var(--primary)}
-  .phone-input::placeholder{color:var(--ink-4)}
-
   .form-cta{margin-top:14px}
-  .form-foot{margin-top:12px;padding-top:14px;border-top:1px solid var(--hairline-2);font-size:11.5px;color:var(--ink-3);line-height:1.5;display:flex;align-items:flex-start;gap:8px}
+
+  /* Tinkoff ID button */
+  .tid-divider{display:flex;align-items:center;gap:12px;margin:14px 0;color:var(--ink-3);font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.1em}
+  .tid-divider::before,.tid-divider::after{content:"";flex:1;height:1px;background:var(--hairline)}
+  .btn-tinkoff{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--tinkoff);color:#000;padding:14px 22px;border-radius:12px;font-weight:700;font-size:14px;width:100%;border:0;cursor:pointer;font-family:inherit;transition:all .18s}
+  .btn-tinkoff:hover{background:var(--tinkoff-deep);transform:translateY(-1px);box-shadow:0 8px 20px rgba(255,221,45,.32)}
+  .btn-tinkoff .tlogo{width:24px;height:24px;border-radius:6px;background:#000;display:grid;place-items:center;color:var(--tinkoff);font-weight:900;font-size:14px;font-family:'Manrope',sans-serif}
+
+  .form-foot{margin-top:14px;padding-top:14px;border-top:1px solid var(--hairline-2);font-size:11.5px;color:var(--ink-3);line-height:1.5;display:flex;align-items:flex-start;gap:8px}
   .form-foot a{color:var(--primary);font-weight:600}
 
-  /* ============================================================
-     PRODUCTS BLOCK (with highlighted займ)
-     ============================================================ */
+  /* Products block */
   .sec{padding:80px 0}
   .sec + .sec{border-top:1px solid var(--hairline)}
   .sec-head{margin-bottom:36px;display:grid;grid-template-columns:1fr auto;align-items:end;gap:20px}
@@ -165,39 +145,19 @@
   .sec-link::after{content:"→";transition:transform .18s}
   .sec-link:hover::after{transform:translateX(4px)}
 
-  /* Products grid — 5 cards, заём подсвечен */
   .products{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-  .prod{
-    background:var(--paper);border:1px solid var(--hairline);
-    border-radius:18px;padding:24px;
-    display:flex;flex-direction:column;gap:12px;
-    transition:all .25s cubic-bezier(.2,.8,.2,1);cursor:pointer;
-    position:relative;overflow:hidden;min-height:240px
-  }
+  .prod{background:var(--paper);border:1px solid var(--hairline);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:all .25s cubic-bezier(.2,.8,.2,1);cursor:pointer;position:relative;overflow:hidden;min-height:240px}
   .prod:hover{transform:translateY(-3px);border-color:var(--ink-3);box-shadow:var(--shadow-2)}
-  .prod-ico{
-    width:42px;height:42px;border-radius:50%;
-    background:var(--warm);border:1px solid var(--hairline-2);
-    display:grid;place-items:center;font-size:18px;color:var(--ink-2)
-  }
+  .prod-ico{width:42px;height:42px;border-radius:50%;background:var(--warm);border:1px solid var(--hairline-2);display:grid;place-items:center;font-size:18px;color:var(--ink-2)}
   .prod h4{font-family:'Manrope',sans-serif;font-weight:700;font-size:19px;margin:6px 0 0;letter-spacing:-.015em;line-height:1.2}
   .prod p{margin:0;font-size:13px;color:var(--ink-3);line-height:1.5}
-  .prod-rate{
-    margin-top:auto;padding-top:14px;border-top:1px solid var(--hairline-2);
-    display:flex;justify-content:space-between;align-items:baseline;gap:10px
-  }
+  .prod-rate{margin-top:auto;padding-top:14px;border-top:1px solid var(--hairline-2);display:flex;justify-content:space-between;align-items:baseline;gap:10px}
   .prod-rate .v{font-family:'Manrope',sans-serif;font-weight:800;font-size:21px;color:var(--ink);letter-spacing:-.02em;line-height:1}
   .prod-rate .k{font-size:11px;color:var(--ink-3);font-weight:500}
   .prod-arrow{position:absolute;top:24px;right:24px;width:28px;height:28px;border-radius:50%;border:1px solid var(--hairline);display:grid;place-items:center;color:var(--ink-3);font-size:13px;transition:all .25s}
   .prod:hover .prod-arrow{background:var(--ink);color:#fff;border-color:var(--ink);transform:translate(2px,-2px)}
 
-  /* Highlighted prod — займ */
-  .prod.featured{
-    background:linear-gradient(165deg,var(--primary) 0%,var(--primary-deep) 100%);
-    color:#fff;border:0;
-    box-shadow:0 20px 48px rgba(31,78,95,.18);
-    position:relative
-  }
+  .prod.featured{background:linear-gradient(165deg,var(--primary) 0%,var(--primary-deep) 100%);color:#fff;border:0;box-shadow:0 20px 48px rgba(31,78,95,.18);position:relative}
   .prod.featured::after{content:"";position:absolute;right:-80px;bottom:-80px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none}
   .prod.featured .prod-ico{background:rgba(255,255,255,.16);border:0;color:#fff;width:46px;height:46px;font-size:20px}
   .prod.featured h4{color:#fff;font-size:20px}
@@ -206,16 +166,9 @@
   .prod.featured .prod-rate .v{color:#fff;font-size:22px}
   .prod.featured .prod-rate .k{color:rgba(255,255,255,.65)}
   .prod.featured .prod-arrow{background:rgba(255,255,255,.16);border:0;color:#fff}
-  .prod-badge{
-    position:absolute;top:14px;right:50px;
-    font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;
-    padding:3px 9px;border-radius:999px;
-    background:rgba(255,255,255,.16);color:#fff;font-weight:700
-  }
+  .prod-badge{position:absolute;top:14px;right:50px;font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-weight:700}
 
-  /* ============================================================
-     BEST OFFERS WITH TABS (same as before)
-     ============================================================ */
+  /* Best offers tabs */
   .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px}
   .tab{padding:9px 16px;border-radius:999px;font-size:13px;color:var(--ink-2);font-weight:500;background:transparent;border:1px solid var(--hairline);transition:all .18s}
   .tab:hover{border-color:var(--ink-3);color:var(--ink)}
@@ -239,7 +192,6 @@
   .offer-big p{margin:0;font-size:14px;color:rgba(255,255,255,.7);line-height:1.55}
   .offer-big-arrow{margin-top:auto;width:54px;height:54px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-size:20px;align-self:flex-end}
 
-  /* Journal */
   .journal{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
   .article{background:var(--paper);border:1px solid var(--hairline);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:all .2s;cursor:pointer}
   .article:hover{border-color:var(--ink-3);transform:translateY(-2px);box-shadow:var(--shadow-1)}
@@ -247,7 +199,6 @@
   .article h5{font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;line-height:1.3;margin:4px 0 0;letter-spacing:-.015em}
   .article-meta{margin-top:auto;padding-top:16px;font-size:12px;color:var(--ink-3);font-weight:500;border-top:1px solid var(--hairline-2)}
 
-  /* Reviews */
   .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
   .rev{background:var(--paper);border:1px solid var(--hairline);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:16px}
   .rev-stars{font-size:13px;color:var(--copper);letter-spacing:2px;font-family:'Manrope';font-weight:700}
@@ -255,7 +206,6 @@
   .rev-who{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:16px;border-top:1px solid var(--hairline-2);font-size:12.5px;color:var(--ink-3);font-weight:500}
   .rev-av{width:34px;height:34px;border-radius:50%;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;font-family:'Manrope',sans-serif;font-weight:700;font-size:12px}
 
-  /* License */
   .license{background:var(--paper);border:1px solid var(--hairline);border-radius:22px;padding:36px 40px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
   .license h3{font-family:'Manrope',sans-serif;font-weight:800;font-size:30px;line-height:1.08;margin:0 0 14px;letter-spacing:-.02em}
   .license h3 em{font-style:normal;color:var(--primary)}
@@ -276,7 +226,6 @@
   .metric .num em{font-style:normal;color:var(--primary)}
   .metric .lab{margin-top:14px;font-size:13px;color:var(--ink-3);font-weight:500;line-height:1.4}
 
-  /* Newsletter */
   .news{background:var(--ink);color:#fff;border-radius:24px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;overflow:hidden}
   .news::after{content:"";position:absolute;right:-150px;top:-150px;width:480px;height:480px;border-radius:50%;background:radial-gradient(closest-side,rgba(31,78,95,.4),transparent 70%);pointer-events:none}
   .news-content{position:relative}
@@ -290,18 +239,15 @@
   .news-form button{padding:0 26px;background:var(--primary);color:#fff;border-radius:999px;font-weight:600;font-size:14px;height:56px;transition:background .18s}
   .news-form button:hover{background:var(--primary-deep)}
 
-  /* Trust ribbon */
   .trust-ribbon{margin-top:24px;background:var(--forest);color:#fff;border-radius:16px;padding:18px 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
   .trust-ribbon .l{display:flex;flex-wrap:wrap;gap:18px;font-size:12.5px;font-weight:500;color:rgba(255,255,255,.85)}
   .trust-ribbon .l span{display:inline-flex;align-items:center;gap:6px}
   .trust-ribbon .l span::before{content:"";width:5px;height:5px;border-radius:50%;background:#9ED4A2}
   .trust-ribbon .r{font-size:12px;color:rgba(255,255,255,.6);font-weight:500}
 
-  /* PSK */
   .psk{margin-top:18px;padding:14px 18px;background:var(--warm);border:1px solid var(--hairline);border-radius:12px;font-size:12.5px;color:var(--ink-3);line-height:1.55}
   .psk b{color:var(--ink-2);font-weight:600}
 
-  /* FAQ */
   .faq{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .faq-item{background:var(--paper);border:1px solid var(--hairline);border-radius:16px;padding:24px 28px;transition:border-color .2s;cursor:pointer}
   .faq-item:hover{border-color:var(--ink-3)}
@@ -310,7 +256,6 @@
   .faq-item.open .faq-q::after{transform:rotate(45deg)}
   .faq-a{margin:0;font-size:14px;color:var(--ink-2);line-height:1.6}
 
-  /* Footer */
   .foot{margin-top:80px;padding:48px 0 32px;border-top:1px solid var(--hairline);background:var(--warm)}
   .foot-grid{max-width:1240px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px}
   .foot-grid h5{font-size:11px;color:var(--ink-3);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin:0 0 14px}
@@ -321,25 +266,23 @@
 
   .sticky-cta{display:none}
 
-  /* Mobile */
   @media(max-width:980px){
     .nav-links{display:none}
     .top-in{justify-content:center;font-size:11px}
     .top-in > div:last-child{display:none}
     .nav-cta .btn-ghost{display:none}
-
-    .hero{padding:24px 0 28px}
+    .btn-tid-nav{padding:7px 12px 7px 8px;font-size:12px}
+    .btn-tid-nav .tlogo{width:18px;height:18px;font-size:11px}
+    .hero{padding:20px 0 28px}
     .hero-grid{grid-template-columns:1fr;gap:24px}
     .hero-text h1{font-size:32px}
     .hero-text .lead{font-size:14px}
     .hero-bullets{display:none}
-
     .form-card{padding:20px}
     .product-tabs{grid-template-columns:repeat(5,1fr);gap:4px;padding:5px}
     .product-tab{padding:8px 4px}
     .product-tab .lab{font-size:10px}
     .product-tab .ico{font-size:14px}
-
     .sec{padding:48px 0}
     .sec-head{grid-template-columns:1fr;gap:14px}
     .products{grid-template-columns:1fr 1fr;gap:8px}
@@ -349,13 +292,11 @@
     .prod-rate .v{font-size:18px}
     .prod.featured{grid-column:1 / span 2}
     .prod-arrow{width:24px;height:24px}
-
     .license,.news{grid-template-columns:1fr;gap:32px;padding:32px}
     .offers,.journal,.reviews,.faq,.foot-grid{grid-template-columns:1fr}
     .metrics{grid-template-columns:1fr 1fr}
     .metric{padding:24px 18px}
     .metric .num{font-size:42px}
-
     body{padding-bottom:80px}
     .sticky-cta{display:flex;position:fixed;bottom:0;left:0;right:0;background:var(--paper);border-top:1px solid var(--hairline);padding:12px 16px;gap:10px;z-index:50;box-shadow:0 -4px 20px rgba(21,40,44,.06)}
     .sticky-cta button{flex:1}
@@ -364,7 +305,6 @@
 </head>
 <body>
 
-<!-- Top utility bar -->
 <div class="top">
   <div class="top-in">
     <div>В реестре <b>Банка России</b> · 150+ партнёров · подбор бесплатный</div>
@@ -372,7 +312,6 @@
   </div>
 </div>
 
-<!-- Nav -->
 <nav class="nav">
   <div class="nav-in">
     <div class="logo"><span class="logo-mark">Б</span> Бустра</div>
@@ -386,18 +325,18 @@
     </div>
     <div class="nav-cta">
       <button class="btn btn-ghost">Кабинет</button>
-      <button class="btn btn-pri">Подобрать</button>
+      <button class="btn-tid-nav" aria-label="Войти через Тинькофф ID">
+        <span class="tlogo">T</span><span>Тинькофф&nbsp;ID</span>
+      </button>
     </div>
   </div>
 </nav>
 
-<!-- ============ HERO with APPLICATION FORM ============ -->
 <section class="hero">
   <div class="wrap hero-inner">
-    <div class="hero-eyebrow">Шаг 1 · около минуты</div>
+    <div class="hero-eyebrow">Шаг 1 · меньше минуты</div>
 
     <div class="hero-grid">
-      <!-- Text side -->
       <div class="hero-text">
         <h1 class="display">Оставьте заявку — <em>подберём подходящее</em></h1>
         <p class="lead">Выберите, что вам нужно — мы покажем предложения от партнёров реестра Банка России, в которых <em>вас одобрят</em>. Без обзвона и скрытых условий.</p>
@@ -405,195 +344,189 @@
         <div class="hero-bullets">
           <div class="hero-bullet">
             <div class="hero-bullet-mark">⌖</div>
-            <div class="hero-bullet-text">
-              <b>Только подходящие</b>
-              <span>Вы видите ставку, ПСК и шанс одобрения до подачи заявки.</span>
-            </div>
+            <div class="hero-bullet-text"><b>Только подходящие</b><span>Вы видите ставку, ПСК и шанс одобрения до подачи заявки.</span></div>
           </div>
           <div class="hero-bullet">
             <div class="hero-bullet-mark">○</div>
-            <div class="hero-bullet-text">
-              <b>Подбор бесплатный</b>
-              <span>Зарабатываем на договоре с партнёром — не на клиенте.</span>
-            </div>
+            <div class="hero-bullet-text"><b>Подбор бесплатный</b><span>Зарабатываем на договоре с партнёром — не на клиенте.</span></div>
           </div>
           <div class="hero-bullet">
             <div class="hero-bullet-mark">↔</div>
-            <div class="hero-bullet-text">
-              <b>Один запрос — десятки предложений</b>
-              <span>Один запрос в БКИ независимо от количества кредиторов в подборке.</span>
-            </div>
+            <div class="hero-bullet-text"><b>Один запрос — десятки предложений</b><span>Один запрос в БКИ независимо от количества кредиторов в подборке.</span></div>
           </div>
         </div>
       </div>
 
-      <!-- Form card -->
       <div class="form-card">
         <div class="form-card-h">
           <h3>Оставить заявку</h3>
           <span class="step">Шаг 1 / 3</span>
         </div>
 
-        <!-- Product tabs -->
-        <div class="product-tabs" role="tablist">
-          <button class="product-tab on" data-prod="loan" role="tab">
-            <span class="ico">⌖</span>
-            <span class="lab">Заём</span>
-          </button>
-          <button class="product-tab" data-prod="credit" role="tab">
-            <span class="ico">◐</span>
-            <span class="lab">Кредит</span>
-          </button>
-          <button class="product-tab" data-prod="card" role="tab">
-            <span class="ico">◊</span>
-            <span class="lab">Карта</span>
-          </button>
-          <button class="product-tab" data-prod="deposit" role="tab">
-            <span class="ico">↑</span>
-            <span class="lab">Вклад</span>
-          </button>
-          <button class="product-tab" data-prod="ins" role="tab">
-            <span class="ico">⌂</span>
-            <span class="lab">Страх.</span>
-          </button>
+        <div class="aud-switch" role="tablist" aria-label="Тип клиента">
+          <button class="aud-btn on" data-aud="person">Физлицу</button>
+          <button class="aud-btn" data-aud="business">Бизнесу</button>
         </div>
 
-        <!-- Form panels -->
-        <div class="form-panels">
+        <div class="product-tabs" role="tablist">
+          <button class="product-tab on" data-prod="loan" role="tab"><span class="ico">⌖</span><span class="lab">Заём</span></button>
+          <button class="product-tab" data-prod="credit" role="tab"><span class="ico">◐</span><span class="lab">Кредит</span></button>
+          <button class="product-tab" data-prod="card" role="tab"><span class="ico">◊</span><span class="lab">Карта</span></button>
+          <button class="product-tab" data-prod="deposit" role="tab"><span class="ico">↑</span><span class="lab" data-person-label="Вклад" data-business-label="Депозит">Вклад</span></button>
+          <button class="product-tab" data-prod="ins" role="tab"><span class="ico">⌂</span><span class="lab">Страх.</span></button>
+        </div>
 
-          <!-- Loan -->
+        <!-- PERSON panels -->
+        <div class="form-panels-group on" data-aud="person">
+
           <div class="form-panel on" data-prod="loan">
             <div class="form-row">
               <span class="lab">Сумма</span>
-              <div class="chips">
-                <button class="chip">5 000 ₽</button>
-                <button class="chip">10 000 ₽</button>
-                <button class="chip on">25 000 ₽</button>
-                <button class="chip">50 000 ₽</button>
-                <button class="chip">100 000 ₽</button>
-                <button class="chip">Другая</button>
-              </div>
+              <div class="slider-h"><span class="slider-val" id="pLoanA">25 000 ₽</span><span class="slider-bounds">3 000 — 100 000 ₽</span></div>
+              <input type="range" class="range" min="3000" max="100000" step="1000" value="25000" data-target="pLoanA" data-suffix=" ₽">
             </div>
             <div class="form-row">
               <span class="lab">Срок</span>
-              <div class="chips">
-                <button class="chip">7 дней</button>
-                <button class="chip">14 дней</button>
-                <button class="chip on">21 день</button>
-                <button class="chip">30 дней</button>
-                <button class="chip">60 дней</button>
-                <button class="chip">180 дней</button>
-              </div>
-            </div>
-            <div class="form-row">
-              <span class="lab">Телефон</span>
-              <input type="tel" class="phone-input" placeholder="+7 ___ ___ __ __">
+              <div class="slider-h"><span class="slider-val" id="pLoanT">21 день</span><span class="slider-bounds">7 — 180 дней</span></div>
+              <input type="range" class="range" min="7" max="180" step="1" value="21" data-target="pLoanT" data-unit="day">
             </div>
             <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Изучить варианты</button>
+            <div class="tid-divider">или</div>
+            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф ID</button>
           </div>
 
-          <!-- Credit -->
           <div class="form-panel" data-prod="credit">
             <div class="form-row">
               <span class="lab">Сумма</span>
-              <div class="chips">
-                <button class="chip">100 000 ₽</button>
-                <button class="chip">300 000 ₽</button>
-                <button class="chip on">500 000 ₽</button>
-                <button class="chip">1 000 000 ₽</button>
-                <button class="chip">3 000 000 ₽</button>
-                <button class="chip">Другая</button>
-              </div>
+              <div class="slider-h"><span class="slider-val" id="pCredA">500 000 ₽</span><span class="slider-bounds">100 000 — 5 000 000 ₽</span></div>
+              <input type="range" class="range" min="100000" max="5000000" step="10000" value="500000" data-target="pCredA" data-suffix=" ₽">
             </div>
             <div class="form-row">
               <span class="lab">Срок</span>
-              <div class="chips">
-                <button class="chip">12 мес</button>
-                <button class="chip on">24 мес</button>
-                <button class="chip">36 мес</button>
-                <button class="chip">60 мес</button>
-                <button class="chip">84 мес</button>
-              </div>
-            </div>
-            <div class="form-row">
-              <span class="lab">Телефон</span>
-              <input type="tel" class="phone-input" placeholder="+7 ___ ___ __ __">
+              <div class="slider-h"><span class="slider-val" id="pCredT">24 мес</span><span class="slider-bounds">6 — 84 месяца</span></div>
+              <input type="range" class="range" min="6" max="84" step="1" value="24" data-target="pCredT" data-unit="month">
             </div>
             <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Изучить варианты</button>
+            <div class="tid-divider">или</div>
+            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф ID</button>
           </div>
 
-          <!-- Card -->
           <div class="form-panel" data-prod="card">
             <div class="form-row">
               <span class="lab">Тип карты</span>
-              <div class="chips">
-                <button class="chip on">Кредитная</button>
-                <button class="chip">Дебетовая</button>
-              </div>
+              <div class="chips"><button class="chip on">Кредитная</button><button class="chip">Дебетовая</button></div>
             </div>
             <div class="form-row">
               <span class="lab">Что важно</span>
-              <div class="chips">
-                <button class="chip on">Кэшбэк</button>
-                <button class="chip">Без процентов</button>
-                <button class="chip">Путешествия</button>
-                <button class="chip">Премиум</button>
-              </div>
-            </div>
-            <div class="form-row">
-              <span class="lab">Телефон</span>
-              <input type="tel" class="phone-input" placeholder="+7 ___ ___ __ __">
+              <div class="chips"><button class="chip on">Кэшбэк</button><button class="chip">Без процентов</button><button class="chip">Путешествия</button><button class="chip">Премиум</button></div>
             </div>
             <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Подобрать карту</button>
+            <div class="tid-divider">или</div>
+            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф ID</button>
           </div>
 
-          <!-- Deposit -->
           <div class="form-panel" data-prod="deposit">
             <div class="form-row">
               <span class="lab">Сумма вклада</span>
-              <div class="chips">
-                <button class="chip">10 000 ₽</button>
-                <button class="chip">30 000 ₽</button>
-                <button class="chip on">100 000 ₽</button>
-                <button class="chip">500 000 ₽</button>
-                <button class="chip">1 000 000 ₽</button>
-                <button class="chip">Другая</button>
-              </div>
+              <div class="slider-h"><span class="slider-val" id="pDepA">100 000 ₽</span><span class="slider-bounds">10 000 — 5 000 000 ₽</span></div>
+              <input type="range" class="range" min="10000" max="5000000" step="10000" value="100000" data-target="pDepA" data-suffix=" ₽">
             </div>
             <div class="form-row">
               <span class="lab">Срок</span>
-              <div class="chips">
-                <button class="chip">3 мес</button>
-                <button class="chip on">6 мес</button>
-                <button class="chip">12 мес</button>
-                <button class="chip">24 мес</button>
-                <button class="chip">36 мес</button>
-              </div>
-            </div>
-            <div class="form-row">
-              <span class="lab">Телефон</span>
-              <input type="tel" class="phone-input" placeholder="+7 ___ ___ __ __">
+              <div class="slider-h"><span class="slider-val" id="pDepT">6 мес</span><span class="slider-bounds">3 — 36 месяцев</span></div>
+              <input type="range" class="range" min="3" max="36" step="1" value="6" data-target="pDepT" data-unit="month">
             </div>
             <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Найти вклад</button>
+            <div class="tid-divider">или</div>
+            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф ID</button>
           </div>
 
-          <!-- Insurance -->
           <div class="form-panel" data-prod="ins">
             <div class="form-row">
               <span class="lab">Что страхуем</span>
-              <div class="chips">
-                <button class="chip on">ОСАГО</button>
-                <button class="chip">КАСКО</button>
-                <button class="chip">Жильё</button>
-                <button class="chip">Ипотека</button>
-                <button class="chip">Жизнь и здоровье</button>
-              </div>
-            </div>
-            <div class="form-row">
-              <span class="lab">Телефон</span>
-              <input type="tel" class="phone-input" placeholder="+7 ___ ___ __ __">
+              <div class="chips"><button class="chip on">ОСАГО</button><button class="chip">КАСКО</button><button class="chip">Жильё</button><button class="chip">Ипотека</button><button class="chip">Жизнь и здоровье</button></div>
             </div>
             <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Рассчитать</button>
+            <div class="tid-divider">или</div>
+            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф ID</button>
+          </div>
+
+        </div>
+
+        <!-- BUSINESS panels -->
+        <div class="form-panels-group" data-aud="business">
+
+          <div class="form-panel on" data-prod="loan">
+            <div class="form-row">
+              <span class="lab">Сумма займа</span>
+              <div class="slider-h"><span class="slider-val" id="bLoanA">500 000 ₽</span><span class="slider-bounds">50 000 — 5 000 000 ₽</span></div>
+              <input type="range" class="range" min="50000" max="5000000" step="10000" value="500000" data-target="bLoanA" data-suffix=" ₽">
+            </div>
+            <div class="form-row">
+              <span class="lab">Срок</span>
+              <div class="slider-h"><span class="slider-val" id="bLoanT">6 мес</span><span class="slider-bounds">1 — 12 месяцев</span></div>
+              <input type="range" class="range" min="1" max="12" step="1" value="6" data-target="bLoanT" data-unit="month">
+            </div>
+            <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Изучить варианты для бизнеса</button>
+            <div class="tid-divider">или</div>
+            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф Бизнес</button>
+          </div>
+
+          <div class="form-panel" data-prod="credit">
+            <div class="form-row">
+              <span class="lab">Сумма кредита</span>
+              <div class="slider-h"><span class="slider-val" id="bCredA">5 000 000 ₽</span><span class="slider-bounds">500 000 — 30 000 000 ₽</span></div>
+              <input type="range" class="range" min="500000" max="30000000" step="100000" value="5000000" data-target="bCredA" data-suffix=" ₽">
+            </div>
+            <div class="form-row">
+              <span class="lab">Срок</span>
+              <div class="slider-h"><span class="slider-val" id="bCredT">36 мес</span><span class="slider-bounds">6 — 84 месяца</span></div>
+              <input type="range" class="range" min="6" max="84" step="1" value="36" data-target="bCredT" data-unit="month">
+            </div>
+            <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Найти кредит для бизнеса</button>
+            <div class="tid-divider">или</div>
+            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф Бизнес</button>
+          </div>
+
+          <div class="form-panel" data-prod="card">
+            <div class="form-row">
+              <span class="lab">Назначение</span>
+              <div class="chips"><button class="chip on">Бизнес-расходы</button><button class="chip">Командировки</button><button class="chip">Закупки</button><button class="chip">Корпоративные</button></div>
+            </div>
+            <div class="form-row">
+              <span class="lab">Лимит / месяц</span>
+              <div class="slider-h"><span class="slider-val" id="bCardL">300 000 ₽</span><span class="slider-bounds">50 000 — 3 000 000 ₽</span></div>
+              <input type="range" class="range" min="50000" max="3000000" step="50000" value="300000" data-target="bCardL" data-suffix=" ₽">
+            </div>
+            <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Подобрать бизнес-карту</button>
+            <div class="tid-divider">или</div>
+            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф Бизнес</button>
+          </div>
+
+          <div class="form-panel" data-prod="deposit">
+            <div class="form-row">
+              <span class="lab">Сумма депозита</span>
+              <div class="slider-h"><span class="slider-val" id="bDepA">5 000 000 ₽</span><span class="slider-bounds">300 000 — 100 000 000 ₽</span></div>
+              <input type="range" class="range" min="300000" max="100000000" step="100000" value="5000000" data-target="bDepA" data-suffix=" ₽">
+            </div>
+            <div class="form-row">
+              <span class="lab">Срок</span>
+              <div class="slider-h"><span class="slider-val" id="bDepT">12 мес</span><span class="slider-bounds">1 — 36 месяцев</span></div>
+              <input type="range" class="range" min="1" max="36" step="1" value="12" data-target="bDepT" data-unit="month">
+            </div>
+            <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Найти депозит для бизнеса</button>
+            <div class="tid-divider">или</div>
+            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф Бизнес</button>
+          </div>
+
+          <div class="form-panel" data-prod="ins">
+            <div class="form-row">
+              <span class="lab">Что страхуем</span>
+              <div class="chips"><button class="chip on">Имущество</button><button class="chip">Ответственность</button><button class="chip">Сотрудники</button><button class="chip">Транспорт</button><button class="chip">Грузы</button></div>
+            </div>
+            <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Рассчитать для бизнеса</button>
+            <div class="tid-divider">или</div>
+            <button class="btn-tinkoff"><span class="tlogo">T</span>Войти через Тинькофф Бизнес</button>
           </div>
 
         </div>
@@ -607,7 +540,6 @@
   </div>
 </section>
 
-<!-- ============ FINANCIAL PRODUCTS BLOCK ============ -->
 <section class="sec" style="border-top:1px solid var(--hairline)">
   <div class="wrap">
     <div class="sec-head">
@@ -626,60 +558,40 @@
         <div class="prod-ico">⌖</div>
         <h4>Краткосрочный заём</h4>
         <p>От 3 000 до 100 000 ₽ — быстро и без лишних формальностей.</p>
-        <div class="prod-rate">
-          <div class="v">87% <span style="font-size:12px;color:rgba(255,255,255,.65);font-weight:500">находят</span></div>
-          <div class="k">≈ 15 минут</div>
-        </div>
+        <div class="prod-rate"><div class="v">87% <span style="font-size:12px;color:rgba(255,255,255,.65);font-weight:500">находят</span></div><div class="k">≈ 15 минут</div></div>
       </button>
-
       <button class="prod">
         <span class="prod-arrow">→</span>
         <div class="prod-ico">◐</div>
         <h4>Кредит</h4>
         <p>На покупки, ремонт, обучение или рефинансирование.</p>
-        <div class="prod-rate">
-          <div class="v">от 5,9%</div>
-          <div class="k">годовых</div>
-        </div>
+        <div class="prod-rate"><div class="v">от 5,9%</div><div class="k">годовых</div></div>
       </button>
-
       <button class="prod">
         <span class="prod-arrow">→</span>
         <div class="prod-ico">◊</div>
         <h4>Карта</h4>
         <p>Дебетовые и кредитные с возвратом за покупки.</p>
-        <div class="prod-rate">
-          <div class="v">до 30%</div>
-          <div class="k">кэшбэк</div>
-        </div>
+        <div class="prod-rate"><div class="v">до 30%</div><div class="k">кэшбэк</div></div>
       </button>
-
       <button class="prod">
         <span class="prod-arrow">→</span>
         <div class="prod-ico">↑</div>
         <h4>Сбережения</h4>
         <p>Вклады с защитой АСВ и накопительные счета.</p>
-        <div class="prod-rate">
-          <div class="v">до 22%</div>
-          <div class="k">годовых</div>
-        </div>
+        <div class="prod-rate"><div class="v">до 22%</div><div class="k">годовых</div></div>
       </button>
-
       <button class="prod">
         <span class="prod-arrow">→</span>
         <div class="prod-ico">⌂</div>
         <h4>Страхование</h4>
         <p>ОСАГО, КАСКО и страхование жилья от 25+ страховщиков.</p>
-        <div class="prod-rate">
-          <div class="v">от 3 200 ₽</div>
-          <div class="k">на год</div>
-        </div>
+        <div class="prod-rate"><div class="v">от 3 200 ₽</div><div class="k">на год</div></div>
       </button>
     </div>
   </div>
 </section>
 
-<!-- ============ BEST OFFERS WITH TABS ============ -->
 <section class="sec">
   <div class="wrap">
     <div class="sec-head">
@@ -706,47 +618,26 @@
 
     <div class="offers">
       <div class="offer">
-        <div class="offer-h">
-          <div class="offer-logo">МД</div>
-          <span class="offer-tag">Рекомендуем</span>
-        </div>
+        <div class="offer-h"><div class="offer-logo">МД</div><span class="offer-tag">Рекомендуем</span></div>
         <div class="offer-name">МигДеньги</div>
         <div class="offer-rate">0%<small>первый займ — 96% получают одобрение</small></div>
-        <div class="offer-meta">
-          <div>Сумма — <b>до 30 000 ₽</b></div>
-          <div>Срок — <b>до 30 дней</b></div>
-        </div>
+        <div class="offer-meta"><div>Сумма — <b>до 30 000 ₽</b></div><div>Срок — <b>до 30 дней</b></div></div>
         <button class="btn btn-sec btn-block btn-arrow offer-cta">Подробнее</button>
       </div>
-
       <div class="offer">
-        <div class="offer-h">
-          <div class="offer-logo">ММ</div>
-          <span class="offer-tag hot">Популярно</span>
-        </div>
+        <div class="offer-h"><div class="offer-logo">ММ</div><span class="offer-tag hot">Популярно</span></div>
         <div class="offer-name">Манимен</div>
         <div class="offer-rate">0,8%<small>в сутки · ПСК 292% годовых</small></div>
-        <div class="offer-meta">
-          <div>Сумма — <b>до 100 000 ₽</b></div>
-          <div>Срок — <b>до 126 дней</b></div>
-        </div>
+        <div class="offer-meta"><div>Сумма — <b>до 100 000 ₽</b></div><div>Срок — <b>до 126 дней</b></div></div>
         <button class="btn btn-sec btn-block btn-arrow offer-cta">Подробнее</button>
       </div>
-
       <div class="offer">
-        <div class="offer-h">
-          <div class="offer-logo">КП</div>
-          <span class="offer-tag">Гибкий график</span>
-        </div>
+        <div class="offer-h"><div class="offer-logo">КП</div><span class="offer-tag">Гибкий график</span></div>
         <div class="offer-name">КредитПлюс</div>
         <div class="offer-rate">0,5%<small>в сутки · ПСК 182% годовых</small></div>
-        <div class="offer-meta">
-          <div>Сумма — <b>до 50 000 ₽</b></div>
-          <div>Срок — <b>до 60 дней</b></div>
-        </div>
+        <div class="offer-meta"><div>Сумма — <b>до 50 000 ₽</b></div><div>Срок — <b>до 60 дней</b></div></div>
         <button class="btn btn-sec btn-block btn-arrow offer-cta">Подробнее</button>
       </div>
-
       <div class="offer offer-big">
         <h4>Подскажем подходящее</h4>
         <p>Ответьте на 3 коротких вопроса — покажем варианты под ваш запрос.</p>
@@ -760,7 +651,6 @@
   </div>
 </section>
 
-<!-- ============ JOURNAL ============ -->
 <section class="sec">
   <div class="wrap">
     <div class="sec-head">
@@ -772,31 +662,14 @@
       <a class="sec-link">Все статьи</a>
     </div>
     <div class="journal">
-      <div class="article">
-        <span class="article-cat">Кредитный рейтинг</span>
-        <h5>Что влияет на кредитный рейтинг — главное за 12 минут</h5>
-        <div class="article-meta">12 мин · 24 тыс. читателей</div>
-      </div>
-      <div class="article">
-        <span class="article-cat">Карты</span>
-        <h5>Жизненный цикл кредитной карты — когда стоит закрывать</h5>
-        <div class="article-meta">8 мин · 18 тыс.</div>
-      </div>
-      <div class="article">
-        <span class="article-cat">Стратегия</span>
-        <h5>Как улучшить кредитный рейтинг постепенно: план на 6 месяцев</h5>
-        <div class="article-meta">15 мин · 31 тыс.</div>
-      </div>
-      <div class="article">
-        <span class="article-cat">БКИ</span>
-        <h5>Как читать отчёт НБКИ — пошаговое руководство</h5>
-        <div class="article-meta">10 мин · 22 тыс.</div>
-      </div>
+      <div class="article"><span class="article-cat">Кредитный рейтинг</span><h5>Что влияет на кредитный рейтинг — главное за 12 минут</h5><div class="article-meta">12 мин · 24 тыс. читателей</div></div>
+      <div class="article"><span class="article-cat">Карты</span><h5>Жизненный цикл кредитной карты — когда стоит закрывать</h5><div class="article-meta">8 мин · 18 тыс.</div></div>
+      <div class="article"><span class="article-cat">Стратегия</span><h5>Как улучшить кредитный рейтинг постепенно: план на 6 месяцев</h5><div class="article-meta">15 мин · 31 тыс.</div></div>
+      <div class="article"><span class="article-cat">БКИ</span><h5>Как читать отчёт НБКИ — пошаговое руководство</h5><div class="article-meta">10 мин · 22 тыс.</div></div>
     </div>
   </div>
 </section>
 
-<!-- ============ REVIEWS ============ -->
 <section class="sec">
   <div class="wrap">
     <div class="sec-head">
@@ -807,61 +680,25 @@
       </div>
     </div>
     <div class="reviews">
-      <div class="rev">
-        <div class="rev-stars">★★★★★</div>
-        <p>«Удобно, что всё в одном кабинете. Брал займ, потом открыл вклад, оформил полис. Не нужно держать в голове пароли от пяти разных сервисов.»</p>
-        <div class="rev-who">
-          <div class="rev-av">ВЛ</div>
-          <div>Виталий Л. · Самара<br><span style="color:var(--ink-4)">3 продукта в кабинете</span></div>
-        </div>
-      </div>
-      <div class="rev">
-        <div class="rev-stars">★★★★★</div>
-        <p>«Понравилось, что не давят и не звонят. Спокойно сравнила варианты, выбрала подходящий — без рекламного шума.»</p>
-        <div class="rev-who">
-          <div class="rev-av">ИГ</div>
-          <div>Ирина Г. · Тула<br><span style="color:var(--ink-4)">Серебряный уровень</span></div>
-        </div>
-      </div>
-      <div class="rev">
-        <div class="rev-stars">★★★★★</div>
-        <p>«Накопил уже 18 000 баллов в клубе — оплачу почти всю страховку в этом году. Простая, прозрачная система.»</p>
-        <div class="rev-who">
-          <div class="rev-av">АН</div>
-          <div>Артём Н. · СПб<br><span style="color:var(--ink-4)">Золотой уровень</span></div>
-        </div>
-      </div>
+      <div class="rev"><div class="rev-stars">★★★★★</div><p>«Удобно, что всё в одном кабинете. Брал займ, потом открыл вклад, оформил полис. Не нужно держать в голове пароли от пяти разных сервисов.»</p><div class="rev-who"><div class="rev-av">ВЛ</div><div>Виталий Л. · Самара<br><span style="color:var(--ink-4)">3 продукта в кабинете</span></div></div></div>
+      <div class="rev"><div class="rev-stars">★★★★★</div><p>«Понравилось, что не давят и не звонят. Спокойно сравнила варианты, выбрала подходящий — без рекламного шума.»</p><div class="rev-who"><div class="rev-av">ИГ</div><div>Ирина Г. · Тула<br><span style="color:var(--ink-4)">Серебряный уровень</span></div></div></div>
+      <div class="rev"><div class="rev-stars">★★★★★</div><p>«Накопил уже 18 000 баллов в клубе — оплачу почти всю страховку в этом году. Простая, прозрачная система.»</p><div class="rev-who"><div class="rev-av">АН</div><div>Артём Н. · СПб<br><span style="color:var(--ink-4)">Золотой уровень</span></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ============ LICENSE + METRICS ============ -->
 <section class="sec">
   <div class="wrap">
     <div class="license">
       <div>
         <h3>В реестре финансовых маркетплейсов <em>Банка России</em></h3>
         <p>С 2018 года помогаем находить подходящие финансовые продукты. Все партнёры проходят проверку требованиям Банка России и профильных законов.</p>
-        <div class="license-tags">
-          <span class="license-tag">В реестре ЦБ РФ</span>
-          <span class="license-tag">353-ФЗ</span>
-          <span class="license-tag">156-ФЗ</span>
-          <span class="license-tag">152-ФЗ</span>
-        </div>
+        <div class="license-tags"><span class="license-tag">В реестре ЦБ РФ</span><span class="license-tag">353-ФЗ</span><span class="license-tag">156-ФЗ</span><span class="license-tag">152-ФЗ</span></div>
       </div>
       <div class="rate-list">
-        <div class="rate-item">
-          <div class="nm">Banki.ru<small>12 034 отзыва</small></div>
-          <div style="display:flex;align-items:center;gap:12px"><div class="stars">★★★★★</div><div class="val">4,8</div></div>
-        </div>
-        <div class="rate-item">
-          <div class="nm">App Store<small>8 210 оценок</small></div>
-          <div style="display:flex;align-items:center;gap:12px"><div class="stars">★★★★★</div><div class="val">4,9</div></div>
-        </div>
-        <div class="rate-item">
-          <div class="nm">Google Play<small>6 445 оценок</small></div>
-          <div style="display:flex;align-items:center;gap:12px"><div class="stars">★★★★★</div><div class="val">4,7</div></div>
-        </div>
+        <div class="rate-item"><div class="nm">Banki.ru<small>12 034 отзыва</small></div><div style="display:flex;align-items:center;gap:12px"><div class="stars">★★★★★</div><div class="val">4,8</div></div></div>
+        <div class="rate-item"><div class="nm">App Store<small>8 210 оценок</small></div><div style="display:flex;align-items:center;gap:12px"><div class="stars">★★★★★</div><div class="val">4,9</div></div></div>
+        <div class="rate-item"><div class="nm">Google Play<small>6 445 оценок</small></div><div style="display:flex;align-items:center;gap:12px"><div class="stars">★★★★★</div><div class="val">4,7</div></div></div>
       </div>
     </div>
 
@@ -874,7 +711,6 @@
   </div>
 </section>
 
-<!-- ============ NEWSLETTER ============ -->
 <section class="sec">
   <div class="wrap">
     <div class="news">
@@ -889,18 +725,12 @@
     </div>
 
     <div class="trust-ribbon">
-      <div class="l">
-        <span>В реестре Банка России</span>
-        <span>156-ФЗ · согласия раздельные</span>
-        <span>АСВ-партнёр</span>
-        <span>РСА-партнёр</span>
-      </div>
+      <div class="l"><span>В реестре Банка России</span><span>156-ФЗ · согласия раздельные</span><span>АСВ-партнёр</span><span>РСА-партнёр</span></div>
       <div class="r">Лицензия № МФ-…</div>
     </div>
   </div>
 </section>
 
-<!-- ============ FAQ ============ -->
 <section class="sec">
   <div class="wrap">
     <div class="sec-head">
@@ -910,17 +740,16 @@
       </div>
     </div>
     <div class="faq">
-      <div class="faq-item"><div class="faq-q">Зачем выбирать «продукт» — почему сразу не показать займы?</div><p class="faq-a">Чтобы предложения соответствовали именно вашему запросу. Если переходите по UTM с конкретным интентом, форма открывается на нужном продукте автоматически.</p></div>
+      <div class="faq-item"><div class="faq-q">Зачем нужен Тинькофф ID?</div><p class="faq-a">Если у вас есть аккаунт в Тинькофф, авторизация через Тинькофф ID заполнит данные автоматически — без ручного ввода и SMS. Пароль остаётся у Тинькофф, нам передаются только подтверждённые данные.</p></div>
+      <div class="faq-item"><div class="faq-q">Чем отличается заявка для бизнеса?</div><p class="faq-a">Для бизнеса доступны другие диапазоны сумм и сроков, а также специфические продукты (бизнес-карта, депозит для юрлиц, страхование бизнеса). Партнёры — банки, работающие с ИП и ООО.</p></div>
       <div class="faq-item"><div class="faq-q">Подбор действительно бесплатный?</div><p class="faq-a">Да. Мы получаем оплату от партнёра за оформленный продукт — никаких скрытых комиссий с клиента.</p></div>
       <div class="faq-item"><div class="faq-q">Влияет ли заявка на кредитную историю?</div><p class="faq-a">Один запрос в БКИ независимо от количества кредиторов в подборке. Это не «разлетается» по всему рынку.</p></div>
       <div class="faq-item"><div class="faq-q">Можно ли отказаться от рассылки и продуктов?</div><p class="faq-a">В любой момент. Отписка в один клик из любого письма, удаление профиля — через личный кабинет.</p></div>
-      <div class="faq-item"><div class="faq-q">Что значит «бундл» — займ + страховка со скидкой?</div><p class="faq-a">Партнёр-страховщик предоставляет лучшие условия при оформлении вместе с займом. Мы получаем оплату из договора с партнёром, не от вас.</p></div>
       <div class="faq-item"><div class="faq-q">Хранятся ли мои данные у вас?</div><p class="faq-a">Только то, что необходимо для подбора и личного кабинета. Согласия на разные цели — раздельные документы.</p></div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="foot">
   <div class="foot-grid">
     <div>
@@ -928,8 +757,8 @@
       <p style="margin:0;color:var(--ink-2);font-size:14px;line-height:1.6;max-width:340px">Финансовый маркетплейс. Помогаем находить подходящие займы, кредиты, карты, вклады и страховки от 150+ партнёров реестра Банка России.</p>
       <div class="foot-disc">Бустра — оператор финансового маркетплейса в реестре Банка России. ПСК и условия каждого предложения — на странице партнёра до подачи заявки. Заём — не для постоянного кредитования.</div>
     </div>
-    <div><h5>Продукты</h5><ul><li>Займы</li><li>Кредиты</li><li>Карты</li><li>Вклады · АСВ</li><li>Страхование</li><li>Бундлы</li></ul></div>
-    <div><h5>Сервис</h5><ul><li>Личный кабинет</li><li>Клуб баллов</li><li>Реферальная программа</li><li>Журнал</li></ul></div>
+    <div><h5>Физлицам</h5><ul><li>Займы</li><li>Кредиты</li><li>Карты</li><li>Вклады · АСВ</li><li>Страхование</li></ul></div>
+    <div><h5>Бизнесу</h5><ul><li>Бизнес-займы</li><li>Кредиты для бизнеса</li><li>Бизнес-карты</li><li>Депозиты юрлиц</li><li>Страхование бизнеса</li></ul></div>
     <div><h5>Помощь</h5><ul><li>Поддержка 24/7</li><li>База знаний</li><li>Реестр Банка России</li><li>Раскрытие информации</li></ul></div>
   </div>
   <div class="foot-bot">
@@ -938,24 +767,64 @@
   </div>
 </footer>
 
-<!-- Sticky CTA mobile -->
 <div class="sticky-cta">
   <button class="btn btn-pri btn-block btn-arrow">Оставить заявку</button>
 </div>
 
 <script>
-  // Product tabs switching
-  document.querySelectorAll('.product-tab').forEach(tab=>{
-    tab.addEventListener('click',()=>{
-      const prod=tab.dataset.prod;
-      document.querySelectorAll('.product-tab').forEach(t=>t.classList.remove('on'));
-      document.querySelectorAll('.form-panel').forEach(p=>p.classList.remove('on'));
-      tab.classList.add('on');
-      document.querySelector('.form-panel[data-prod="'+prod+'"]').classList.add('on');
+  function setupSlider(input){
+    const targetId = input.dataset.target;
+    if (!targetId) return;
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    const suffix = input.dataset.suffix || '';
+    const unit = input.dataset.unit;
+    const wordDay = n => { const r=n%100; if(r>=11&&r<=14)return'дней'; const e=n%10; if(e===1)return'день'; if(e>=2&&e<=4)return'дня'; return'дней'; };
+    const fmt = v => {
+      const n = parseInt(v, 10);
+      if (unit === 'day') return n + ' ' + wordDay(n);
+      if (unit === 'month') return n + ' мес';
+      return n.toLocaleString('ru-RU') + suffix;
+    };
+    const upd = () => target.textContent = fmt(input.value);
+    input.addEventListener('input', upd);
+    upd();
+  }
+  document.querySelectorAll('.range').forEach(setupSlider);
+
+  document.querySelectorAll('.aud-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const aud = btn.dataset.aud;
+      document.querySelectorAll('.aud-btn').forEach(x=>x.classList.remove('on'));
+      btn.classList.add('on');
+      document.querySelectorAll('.form-panels-group').forEach(g=>{
+        g.classList.toggle('on', g.dataset.aud === aud);
+      });
+      document.querySelectorAll('.product-tab .lab[data-person-label]').forEach(lab=>{
+        lab.textContent = aud === 'business' ? lab.dataset.businessLabel : lab.dataset.personLabel;
+      });
+      document.querySelectorAll('.product-tab').forEach(t=>{
+        t.classList.toggle('on', t.dataset.prod === 'loan');
+      });
+      document.querySelectorAll('.form-panel').forEach(p=>{
+        p.classList.toggle('on', p.dataset.prod === 'loan');
+      });
     });
   });
 
-  // Chips toggle (within each row only)
+  document.querySelectorAll('.product-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      const prod = tab.dataset.prod;
+      document.querySelectorAll('.product-tab').forEach(t=>t.classList.remove('on'));
+      tab.classList.add('on');
+      const activeGroup = document.querySelector('.form-panels-group.on');
+      if (!activeGroup) return;
+      activeGroup.querySelectorAll('.form-panel').forEach(p=>{
+        p.classList.toggle('on', p.dataset.prod === prod);
+      });
+    });
+  });
+
   document.querySelectorAll('.chips').forEach(group=>{
     group.querySelectorAll('.chip').forEach(c=>{
       c.addEventListener('click',()=>{
@@ -965,7 +834,6 @@
     });
   });
 
-  // Best-offers tabs
   document.querySelectorAll('.tab').forEach(t=>{
     t.addEventListener('click',()=>{
       document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
@@ -973,7 +841,6 @@
     });
   });
 
-  // FAQ accordion
   document.querySelectorAll('.faq-item').forEach(item=>{
     item.addEventListener('click',()=>{
       item.classList.toggle('open');
