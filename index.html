@@ -3,74 +3,60 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Бустра · финансовый маркетплейс</title>
+<title>Бустра · оставить заявку</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* Warm sand canvas */
     --bg:#F4EFE6;
     --paper:#FFFFFF;
     --warm:#FAF7F0;
-    /* Ink — warm dark, не чёрный */
     --ink:#15282C;
     --ink-2:#3A4D52;
     --ink-3:#7A8B8F;
     --ink-4:#B8C0BD;
     --hairline:#DCD3C0;
     --hairline-2:#E8E1D0;
-    /* Primary accent — deep petrol — спокойный, доверительный */
     --primary:#1F4E5F;
     --primary-deep:#163A47;
     --primary-soft:#E5EFF1;
     --primary-tint:#F1F6F7;
-    /* Warm copper — secondary, для тёплых деталей */
     --copper:#A0876A;
     --copper-soft:#F0E8D9;
-    /* Forest — trust ribbon */
     --forest:#2D4A30;
     --forest-soft:#E0E8DD;
-    /* Soft sun — для редких bright details */
-    --sun:#E5C547;
-
     --shadow-1:0 1px 2px rgba(21,40,44,.04);
     --shadow-2:0 12px 32px rgba(21,40,44,.06);
     --shadow-3:0 28px 64px rgba(21,40,44,.10);
   }
   *{box-sizing:border-box}html,body{margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{
-    background:var(--bg);color:var(--ink);
-    font-family:'Inter',ui-sans-serif,system-ui,sans-serif;
-    font-size:15.5px;line-height:1.55;
-    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility
-  }
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',ui-sans-serif,system-ui,sans-serif;font-size:15.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
   .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
   .display{font-family:'Manrope',sans-serif;font-weight:800;letter-spacing:-.025em;line-height:.98;color:var(--ink)}
   .display em{font-style:normal;color:var(--primary)}
 
-  /* ===== Top utility bar (compact) ===== */
-  .top{font-size:11.5px;color:var(--ink-3);background:transparent;border-bottom:1px solid var(--hairline)}
+  /* Top bar */
+  .top{font-size:11.5px;color:var(--ink-3);border-bottom:1px solid var(--hairline)}
   .top-in{max-width:1240px;margin:0 auto;padding:6px 28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center}
   .top-in b{color:var(--ink-2);font-weight:600}
   .top a{color:var(--ink-2);transition:color .18s}
   .top a:hover{color:var(--primary)}
 
-  /* ===== Site nav (compact) ===== */
+  /* Nav */
   .nav{position:sticky;top:0;background:rgba(244,239,230,.96);backdrop-filter:blur(8px);z-index:90;border-bottom:1px solid var(--hairline)}
   .nav-in{max-width:1240px;margin:0 auto;padding:11px 28px;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center}
   .logo{display:flex;align-items:center;gap:11px;font-family:'Manrope',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.025em}
   .logo-mark{width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-family:'Manrope',sans-serif;font-weight:800;font-size:13px}
   .nav-links{display:flex;gap:24px;font-size:13.5px;color:var(--ink-2);font-weight:500}
-  .nav-links a{transition:color .18s}
   .nav-links a:hover{color:var(--ink)}
   .nav-links a.curr{color:var(--primary);font-weight:600}
   .nav-cta{display:flex;gap:10px;align-items:center}
 
-  /* ===== Buttons ===== */
+  /* Buttons */
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:11px 22px;border-radius:999px;font-weight:600;font-size:14px;transition:all .18s ease;font-family:inherit;border:1px solid transparent}
   .btn-pri{background:var(--primary);color:#fff}
   .btn-pri:hover{background:var(--primary-deep);transform:translateY(-1px);box-shadow:0 8px 20px rgba(31,78,95,.22)}
@@ -78,163 +64,190 @@
   .btn-sec:hover{border-color:var(--ink);background:var(--paper)}
   .btn-ghost{color:var(--ink-2)}
   .btn-ghost:hover{color:var(--ink);background:var(--paper)}
-  .btn-dark{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .btn-dark:hover{background:#000}
   .btn-arrow::after{content:"→";font-weight:400;transition:transform .2s}
   .btn-arrow:hover::after{transform:translateX(3px)}
   .btn-block{display:flex;width:100%}
+  .btn-lg{padding:15px 28px;font-size:15px}
 
-  /* Pills */
-  .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:500;border:1px solid var(--hairline);background:var(--paper);color:var(--ink-2)}
-  .pill-loans{background:var(--primary-soft);color:var(--primary);border-color:rgba(31,78,95,.2)}
-  .dot{width:6px;height:6px;border-radius:50%;background:currentColor;display:inline-block}
-
-  /* ===== Hero — fits one screen ===== */
-  .hero{padding:24px 0 28px;position:relative;overflow:hidden;display:flex;align-items:center;min-height:calc(100vh - 86px)}
-  .hero::before{content:"";position:absolute;left:60%;top:-10%;width:55vw;height:65%;background:radial-gradient(closest-side,rgba(31,78,95,.07),transparent 70%);pointer-events:none}
-  .hero-inner{position:relative;width:100%}
-  .hero-top{margin-bottom:8px}
-  .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;color:var(--primary);font-weight:600;letter-spacing:.02em}
+  /* ============================================================
+     HERO with APPLICATION FORM
+     ============================================================ */
+  .hero{padding:32px 0 36px;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;left:60%;top:-10%;width:55vw;height:60%;background:radial-gradient(closest-side,rgba(31,78,95,.07),transparent 70%);pointer-events:none}
+  .hero-inner{position:relative}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;color:var(--primary);font-weight:600;letter-spacing:.02em;margin-bottom:16px}
   .hero-eyebrow::before{content:"";width:24px;height:1px;background:var(--primary)}
-  .hero-grid-text{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:end;margin-bottom:18px}
-  .h1{font-size:clamp(34px,4.6vw,56px);margin:4px 0 0;line-height:1.04}
-  .lead{font-size:15px;color:var(--ink-2);max-width:420px;line-height:1.5;margin:0;font-weight:400}
-  .lead em{color:var(--ink);font-style:normal;font-weight:600}
+  .hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:start}
+  .hero-text h1{font-size:clamp(36px,4.6vw,58px);margin:0 0 18px;line-height:1.04}
+  .hero-text .lead{font-size:15.5px;color:var(--ink-2);max-width:480px;line-height:1.55;margin:0 0 28px}
+  .hero-text .lead em{color:var(--ink);font-style:normal;font-weight:600}
+  .hero-bullets{display:grid;gap:14px;max-width:440px}
+  .hero-bullet{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+  .hero-bullet-mark{
+    width:36px;height:36px;border-radius:50%;
+    background:var(--primary-soft);color:var(--primary);
+    display:grid;place-items:center;flex-shrink:0;font-size:16px;font-weight:700
+  }
+  .hero-bullet-text b{font-weight:700;font-size:14.5px;color:var(--ink);display:block;margin-bottom:2px;letter-spacing:-.005em}
+  .hero-bullet-text span{font-size:13px;color:var(--ink-3);line-height:1.5}
 
-  /* ===== Segment cards — компактные, fit one screen ===== */
-  .segments{display:grid;grid-template-columns:1.7fr 1fr 1fr;grid-template-rows:auto auto;gap:10px;align-items:stretch}
-  .seg{
-    background:var(--paper);border:1px solid var(--hairline);border-radius:18px;
-    padding:18px;display:flex;flex-direction:column;gap:6px;
-    transition:all .25s cubic-bezier(.2,.8,.2,1);cursor:pointer;position:relative;overflow:hidden
+  /* Application form card */
+  .form-card{
+    background:var(--paper);border:1px solid var(--hairline);
+    border-radius:24px;padding:24px;
+    box-shadow:var(--shadow-3);position:relative
   }
-  .seg:hover{transform:translateY(-2px);border-color:var(--ink-3);box-shadow:var(--shadow-2)}
-  .seg-ico{width:32px;height:32px;border-radius:50%;background:var(--warm);display:grid;place-items:center;font-size:14px;border:1px solid var(--hairline-2);color:var(--ink-2)}
-  .seg h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;margin:2px 0 0;letter-spacing:-.015em;line-height:1.15}
-  .seg p{margin:0;font-size:13px;color:var(--ink-3);line-height:1.45}
-  .seg-pill{
-    align-self:flex-start;margin-top:auto;
-    font-size:11px;color:var(--ink-2);
-    padding-top:10px;border-top:1px solid var(--hairline);width:100%;font-weight:500
+  .form-card-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+  .form-card-h h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;letter-spacing:-.015em;margin:0}
+  .form-card-h .step{font-size:11.5px;color:var(--ink-3);font-weight:500}
+
+  /* Product tabs (chip-style) */
+  .product-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:20px;background:var(--warm);padding:6px;border-radius:14px;border:1px solid var(--hairline-2)}
+  .product-tab{
+    padding:10px 8px;border-radius:10px;
+    background:transparent;color:var(--ink-3);
+    display:flex;flex-direction:column;align-items:center;gap:4px;
+    transition:all .18s;font-family:inherit;cursor:pointer
   }
-  .seg-arrow{
-    position:absolute;top:18px;right:18px;
-    width:26px;height:26px;border-radius:50%;
+  .product-tab:hover{color:var(--ink)}
+  .product-tab.on{background:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(31,78,95,.18)}
+  .product-tab .ico{font-size:16px;line-height:1}
+  .product-tab .lab{font-size:11px;font-weight:600;letter-spacing:-.005em}
+
+  /* Form panels (one per product) */
+  .form-panels{position:relative;min-height:300px}
+  .form-panel{display:none}
+  .form-panel.on{display:block;animation:fadeIn .25s ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  /* Field label + chips */
+  .form-row{margin-bottom:14px}
+  .form-row .lab{font-size:11.5px;color:var(--ink-3);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;display:block}
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+  .chip{
+    padding:8px 13px;border-radius:10px;
+    background:var(--warm);color:var(--ink-2);
     border:1px solid var(--hairline);
-    display:grid;place-items:center;
-    color:var(--ink-3);font-size:12px;transition:all .25s
+    font-size:13px;font-weight:600;
+    transition:all .15s;cursor:pointer
   }
-  .seg:hover .seg-arrow{background:var(--ink);color:#fff;border-color:var(--ink);transform:translate(2px,-2px)}
+  .chip:hover{border-color:var(--ink-3);color:var(--ink)}
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 
-  /* PRIMARY — займ */
-  .seg.primary{
-    grid-column:1;grid-row:1 / span 2;
-    background:linear-gradient(165deg,var(--primary) 0%,var(--primary-deep) 100%);
-    color:#fff;border:0;padding:24px;
-    box-shadow:0 20px 48px rgba(31,78,95,.18)
+  /* Phone input */
+  .phone-input{
+    height:50px;width:100%;
+    border:1.5px solid var(--hairline);border-radius:12px;
+    padding:0 16px;background:var(--paper);
+    font-family:inherit;font-size:15px;font-weight:500;color:var(--ink);
+    outline:none;transition:border .18s
   }
-  .seg.primary::after{content:"";position:absolute;right:-100px;bottom:-100px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none}
-  .seg.primary .seg-ico{background:rgba(255,255,255,.16);border:0;width:38px;height:38px;font-size:16px;color:#fff}
-  .seg.primary h3{font-size:28px;margin-top:4px;color:#fff;font-weight:800;line-height:1.05;max-width:300px}
-  .seg.primary p{color:rgba(255,255,255,.78);font-size:13.5px;max-width:340px;line-height:1.5}
-  .seg.primary .seg-pill{background:rgba(255,255,255,.16);color:#fff;border-top:0;padding-top:0;width:auto;padding:4px 10px;border-radius:999px;margin-top:4px;font-size:11px}
-  .seg.primary .seg-arrow{background:rgba(255,255,255,.16);border-color:transparent;color:#fff}
-  .seg-stats{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.18);display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative}
-  .seg-stats .k{font-size:11px;color:rgba(255,255,255,.6);font-weight:500}
-  .seg-stats .v{font-family:'Manrope',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.02em;line-height:1;margin-top:3px;color:#fff}
-  .seg-cta{margin-top:10px;background:#fff;color:var(--primary);padding:11px 18px;border-radius:999px;font-weight:600;display:flex;justify-content:space-between;align-items:center;font-size:13px;position:relative}
+  .phone-input:focus{border-color:var(--primary)}
+  .phone-input::placeholder{color:var(--ink-4)}
 
-  /* ===== Section header ===== */
+  .form-cta{margin-top:14px}
+  .form-foot{margin-top:12px;padding-top:14px;border-top:1px solid var(--hairline-2);font-size:11.5px;color:var(--ink-3);line-height:1.5;display:flex;align-items:flex-start;gap:8px}
+  .form-foot a{color:var(--primary);font-weight:600}
+
+  /* ============================================================
+     PRODUCTS BLOCK (with highlighted займ)
+     ============================================================ */
   .sec{padding:80px 0}
   .sec + .sec{border-top:1px solid var(--hairline)}
   .sec-head{margin-bottom:36px;display:grid;grid-template-columns:1fr auto;align-items:end;gap:20px}
   .sec-num{font-size:11px;color:var(--ink-3);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
   .sec-num span{color:var(--primary)}
-  .sec-h{
-    font-family:'Manrope',sans-serif;font-weight:800;
-    font-size:clamp(30px,4vw,46px);
-    line-height:1;letter-spacing:-.025em;
-    margin:0;color:var(--ink);max-width:780px
-  }
+  .sec-h{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(30px,4vw,46px);line-height:1;letter-spacing:-.025em;margin:0;color:var(--ink);max-width:780px}
   .sec-h em{font-style:normal;color:var(--primary)}
   .sec-lead{margin:14px 0 0;color:var(--ink-2);font-size:15px;line-height:1.55;max-width:620px}
-  .sec-link{
-    color:var(--ink);font-size:14px;font-weight:600;
-    display:inline-flex;align-items:center;gap:8px;
-    border-bottom:1.5px solid var(--primary);padding-bottom:4px;
-    white-space:nowrap;align-self:end;transition:all .18s
-  }
+  .sec-link{color:var(--ink);font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:8px;border-bottom:1.5px solid var(--primary);padding-bottom:4px;white-space:nowrap;align-self:end;transition:all .18s}
   .sec-link:hover{color:var(--primary)}
   .sec-link::after{content:"→";transition:transform .18s}
   .sec-link:hover::after{transform:translateX(4px)}
 
-  /* ===== Tabs ===== */
-  .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px}
-  .tab{
-    padding:9px 16px;border-radius:999px;
-    font-size:13px;color:var(--ink-2);font-weight:500;
-    background:transparent;border:1px solid var(--hairline);transition:all .18s
+  /* Products grid — 5 cards, заём подсвечен */
+  .products{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .prod{
+    background:var(--paper);border:1px solid var(--hairline);
+    border-radius:18px;padding:24px;
+    display:flex;flex-direction:column;gap:12px;
+    transition:all .25s cubic-bezier(.2,.8,.2,1);cursor:pointer;
+    position:relative;overflow:hidden;min-height:240px
   }
+  .prod:hover{transform:translateY(-3px);border-color:var(--ink-3);box-shadow:var(--shadow-2)}
+  .prod-ico{
+    width:42px;height:42px;border-radius:50%;
+    background:var(--warm);border:1px solid var(--hairline-2);
+    display:grid;place-items:center;font-size:18px;color:var(--ink-2)
+  }
+  .prod h4{font-family:'Manrope',sans-serif;font-weight:700;font-size:19px;margin:6px 0 0;letter-spacing:-.015em;line-height:1.2}
+  .prod p{margin:0;font-size:13px;color:var(--ink-3);line-height:1.5}
+  .prod-rate{
+    margin-top:auto;padding-top:14px;border-top:1px solid var(--hairline-2);
+    display:flex;justify-content:space-between;align-items:baseline;gap:10px
+  }
+  .prod-rate .v{font-family:'Manrope',sans-serif;font-weight:800;font-size:21px;color:var(--ink);letter-spacing:-.02em;line-height:1}
+  .prod-rate .k{font-size:11px;color:var(--ink-3);font-weight:500}
+  .prod-arrow{position:absolute;top:24px;right:24px;width:28px;height:28px;border-radius:50%;border:1px solid var(--hairline);display:grid;place-items:center;color:var(--ink-3);font-size:13px;transition:all .25s}
+  .prod:hover .prod-arrow{background:var(--ink);color:#fff;border-color:var(--ink);transform:translate(2px,-2px)}
+
+  /* Highlighted prod — займ */
+  .prod.featured{
+    background:linear-gradient(165deg,var(--primary) 0%,var(--primary-deep) 100%);
+    color:#fff;border:0;
+    box-shadow:0 20px 48px rgba(31,78,95,.18);
+    position:relative
+  }
+  .prod.featured::after{content:"";position:absolute;right:-80px;bottom:-80px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none}
+  .prod.featured .prod-ico{background:rgba(255,255,255,.16);border:0;color:#fff;width:46px;height:46px;font-size:20px}
+  .prod.featured h4{color:#fff;font-size:20px}
+  .prod.featured p{color:rgba(255,255,255,.78)}
+  .prod.featured .prod-rate{border-top-color:rgba(255,255,255,.18)}
+  .prod.featured .prod-rate .v{color:#fff;font-size:22px}
+  .prod.featured .prod-rate .k{color:rgba(255,255,255,.65)}
+  .prod.featured .prod-arrow{background:rgba(255,255,255,.16);border:0;color:#fff}
+  .prod-badge{
+    position:absolute;top:14px;right:50px;
+    font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;
+    padding:3px 9px;border-radius:999px;
+    background:rgba(255,255,255,.16);color:#fff;font-weight:700
+  }
+
+  /* ============================================================
+     BEST OFFERS WITH TABS (same as before)
+     ============================================================ */
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px}
+  .tab{padding:9px 16px;border-radius:999px;font-size:13px;color:var(--ink-2);font-weight:500;background:transparent;border:1px solid var(--hairline);transition:all .18s}
   .tab:hover{border-color:var(--ink-3);color:var(--ink)}
   .tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 
-  /* ===== Offer cards ===== */
   .offers{display:grid;grid-template-columns:repeat(3,1fr) 1.15fr;gap:14px}
-  .offer{
-    background:var(--paper);border:1px solid var(--hairline);
-    border-radius:20px;padding:24px;
-    display:flex;flex-direction:column;gap:14px;transition:all .2s
-  }
+  .offer{background:var(--paper);border:1px solid var(--hairline);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:14px;transition:all .2s}
   .offer:hover{border-color:var(--primary);box-shadow:var(--shadow-2);transform:translateY(-2px)}
   .offer-h{display:flex;justify-content:space-between;align-items:center}
-  .offer-logo{
-    width:42px;height:42px;border-radius:50%;
-    background:var(--warm);border:1px solid var(--hairline);
-    display:grid;place-items:center;
-    font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;color:var(--ink-2)
-  }
-  .offer-tag{
-    font-size:10.5px;
-    background:var(--warm);color:var(--ink-2);
-    padding:4px 10px;border-radius:6px;font-weight:600;border:1px solid var(--hairline);letter-spacing:.02em
-  }
+  .offer-logo{width:42px;height:42px;border-radius:50%;background:var(--warm);border:1px solid var(--hairline);display:grid;place-items:center;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;color:var(--ink-2)}
+  .offer-tag{font-size:10.5px;background:var(--warm);color:var(--ink-2);padding:4px 10px;border-radius:6px;font-weight:600;border:1px solid var(--hairline);letter-spacing:.02em}
   .offer-tag.hot{background:var(--primary-soft);color:var(--primary);border-color:rgba(31,78,95,.2)}
   .offer-name{font-size:13px;color:var(--ink-3);font-weight:500}
-  .offer-rate{
-    font-family:'Manrope',sans-serif;font-weight:800;
-    font-size:46px;letter-spacing:-.04em;line-height:.96;
-    color:var(--primary)
-  }
-  .offer-rate small{
-    font-family:'Inter';font-size:13px;color:var(--ink-3);
-    font-weight:500;display:block;margin-top:8px;letter-spacing:0
-  }
-  .offer-meta{
-    font-size:13px;color:var(--ink-2);display:grid;gap:5px;
-    padding-top:12px;border-top:1px solid var(--hairline-2)
-  }
+  .offer-rate{font-family:'Manrope',sans-serif;font-weight:800;font-size:46px;letter-spacing:-.04em;line-height:.96;color:var(--primary)}
+  .offer-rate small{font-family:'Inter';font-size:13px;color:var(--ink-3);font-weight:500;display:block;margin-top:8px}
+  .offer-meta{font-size:13px;color:var(--ink-2);display:grid;gap:5px;padding-top:12px;border-top:1px solid var(--hairline-2)}
   .offer-meta b{color:var(--ink);font-weight:600}
   .offer-cta{margin-top:auto}
-
-  /* Big CTA card */
   .offer-big{background:var(--ink);color:#fff;border:0;padding:28px;background-image:radial-gradient(closest-side at 80% 100%,rgba(31,78,95,.32),transparent 70%)}
   .offer-big h4{font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;line-height:1.05;letter-spacing:-.025em;margin:0 0 10px;color:#fff;max-width:240px}
   .offer-big p{margin:0;font-size:14px;color:rgba(255,255,255,.7);line-height:1.55}
   .offer-big-arrow{margin-top:auto;width:54px;height:54px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-size:20px;align-self:flex-end}
 
-  /* ===== Journal ===== */
+  /* Journal */
   .journal{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  .article{
-    background:var(--paper);border:1px solid var(--hairline);
-    border-radius:18px;padding:24px;
-    display:flex;flex-direction:column;gap:12px;transition:all .2s;cursor:pointer
-  }
+  .article{background:var(--paper);border:1px solid var(--hairline);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:all .2s;cursor:pointer}
   .article:hover{border-color:var(--ink-3);transform:translateY(-2px);box-shadow:var(--shadow-1)}
   .article-cat{font-size:11px;color:var(--copper);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
   .article h5{font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;line-height:1.3;margin:4px 0 0;letter-spacing:-.015em}
   .article-meta{margin-top:auto;padding-top:16px;font-size:12px;color:var(--ink-3);font-weight:500;border-top:1px solid var(--hairline-2)}
 
-  /* ===== Reviews ===== */
+  /* Reviews */
   .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
   .rev{background:var(--paper);border:1px solid var(--hairline);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:16px}
   .rev-stars{font-size:13px;color:var(--copper);letter-spacing:2px;font-family:'Manrope';font-weight:700}
@@ -242,16 +255,9 @@
   .rev-who{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:16px;border-top:1px solid var(--hairline-2);font-size:12.5px;color:var(--ink-3);font-weight:500}
   .rev-av{width:34px;height:34px;border-radius:50%;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;font-family:'Manrope',sans-serif;font-weight:700;font-size:12px}
 
-  /* ===== License ===== */
-  .license{
-    background:var(--paper);border:1px solid var(--hairline);
-    border-radius:22px;padding:36px 40px;
-    display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center
-  }
-  .license h3{
-    font-family:'Manrope',sans-serif;font-weight:800;
-    font-size:30px;line-height:1.08;margin:0 0 14px;letter-spacing:-.02em
-  }
+  /* License */
+  .license{background:var(--paper);border:1px solid var(--hairline);border-radius:22px;padding:36px 40px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+  .license h3{font-family:'Manrope',sans-serif;font-weight:800;font-size:30px;line-height:1.08;margin:0 0 14px;letter-spacing:-.02em}
   .license h3 em{font-style:normal;color:var(--primary)}
   .license p{margin:0 0 18px;font-size:14.5px;color:var(--ink-2);line-height:1.55;max-width:520px}
   .license-tags{display:flex;gap:8px;flex-wrap:wrap}
@@ -263,7 +269,6 @@
   .rate-item .stars{color:var(--copper);font-size:12.5px;letter-spacing:2px}
   .rate-item .val{font-family:'Manrope',sans-serif;font-weight:800;font-size:18px;color:var(--ink);letter-spacing:-.02em}
 
-  /* ===== Metrics ===== */
   .metrics{margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
   .metric{padding:36px 24px;border-right:1px solid var(--hairline)}
   .metric:last-child{border-right:0}
@@ -271,12 +276,8 @@
   .metric .num em{font-style:normal;color:var(--primary)}
   .metric .lab{margin-top:14px;font-size:13px;color:var(--ink-3);font-weight:500;line-height:1.4}
 
-  /* ===== Newsletter ===== */
-  .news{
-    background:var(--ink);color:#fff;border-radius:24px;padding:48px;
-    display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
-    position:relative;overflow:hidden
-  }
+  /* Newsletter */
+  .news{background:var(--ink);color:#fff;border-radius:24px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;overflow:hidden}
   .news::after{content:"";position:absolute;right:-150px;top:-150px;width:480px;height:480px;border-radius:50%;background:radial-gradient(closest-side,rgba(31,78,95,.4),transparent 70%);pointer-events:none}
   .news-content{position:relative}
   .news h3{font-family:'Manrope',sans-serif;font-weight:800;font-size:38px;line-height:1.06;letter-spacing:-.025em;margin:0 0 14px;color:#fff}
@@ -289,38 +290,27 @@
   .news-form button{padding:0 26px;background:var(--primary);color:#fff;border-radius:999px;font-weight:600;font-size:14px;height:56px;transition:background .18s}
   .news-form button:hover{background:var(--primary-deep)}
 
-  /* ===== Trust ribbon ===== */
-  .trust-ribbon{
-    margin-top:24px;background:var(--forest);color:#fff;
-    border-radius:16px;padding:18px 28px;
-    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px
-  }
+  /* Trust ribbon */
+  .trust-ribbon{margin-top:24px;background:var(--forest);color:#fff;border-radius:16px;padding:18px 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
   .trust-ribbon .l{display:flex;flex-wrap:wrap;gap:18px;font-size:12.5px;font-weight:500;color:rgba(255,255,255,.85)}
   .trust-ribbon .l span{display:inline-flex;align-items:center;gap:6px}
   .trust-ribbon .l span::before{content:"";width:5px;height:5px;border-radius:50%;background:#9ED4A2}
   .trust-ribbon .r{font-size:12px;color:rgba(255,255,255,.6);font-weight:500}
 
-  /* ===== FAQ ===== */
+  /* PSK */
+  .psk{margin-top:18px;padding:14px 18px;background:var(--warm);border:1px solid var(--hairline);border-radius:12px;font-size:12.5px;color:var(--ink-3);line-height:1.55}
+  .psk b{color:var(--ink-2);font-weight:600}
+
+  /* FAQ */
   .faq{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .faq-item{
-    background:var(--paper);border:1px solid var(--hairline);
-    border-radius:16px;padding:24px 28px;transition:border-color .2s;cursor:pointer
-  }
+  .faq-item{background:var(--paper);border:1px solid var(--hairline);border-radius:16px;padding:24px 28px;transition:border-color .2s;cursor:pointer}
   .faq-item:hover{border-color:var(--ink-3)}
   .faq-q{font-family:'Manrope',sans-serif;font-weight:700;font-size:16.5px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;letter-spacing:-.015em;line-height:1.3;gap:14px}
   .faq-q::after{content:"+";color:var(--primary);font-weight:300;font-size:22px;flex-shrink:0;transition:transform .2s}
   .faq-item.open .faq-q::after{transform:rotate(45deg)}
   .faq-a{margin:0;font-size:14px;color:var(--ink-2);line-height:1.6}
 
-  /* ===== PSK Disclosure ===== */
-  .psk{
-    margin-top:18px;padding:14px 18px;
-    background:var(--warm);border:1px solid var(--hairline);border-radius:12px;
-    font-size:12.5px;color:var(--ink-3);line-height:1.55
-  }
-  .psk b{color:var(--ink-2);font-weight:600}
-
-  /* ===== Footer ===== */
+  /* Footer */
   .foot{margin-top:80px;padding:48px 0 32px;border-top:1px solid var(--hairline);background:var(--warm)}
   .foot-grid{max-width:1240px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px}
   .foot-grid h5{font-size:11px;color:var(--ink-3);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin:0 0 14px}
@@ -329,40 +319,39 @@
   .foot-disc{margin-top:18px;padding:18px 22px;background:var(--paper);border:1px solid var(--hairline);border-radius:14px;font-size:12px;line-height:1.55;color:var(--ink-3)}
   .foot-bot{max-width:1240px;margin:32px auto 0;padding:22px 28px 0;border-top:1px solid var(--hairline);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:11.5px;color:var(--ink-3);font-weight:500}
 
-  /* ===== Sticky CTA mobile ===== */
   .sticky-cta{display:none}
 
-  /* ===== Mobile fits one screen ===== */
+  /* Mobile */
   @media(max-width:980px){
     .nav-links{display:none}
     .top-in{justify-content:center;font-size:11px}
     .top-in > div:last-child{display:none}
-    .nav-in{padding:12px 20px}
     .nav-cta .btn-ghost{display:none}
 
-    .hero{padding:24px 0;min-height:0}
-    .hero-grid-text{grid-template-columns:1fr;gap:14px;margin-bottom:18px;align-items:start}
-    .h1{font-size:32px;line-height:1.04}
-    .lead{font-size:14px;max-width:none}
+    .hero{padding:24px 0 28px}
+    .hero-grid{grid-template-columns:1fr;gap:24px}
+    .hero-text h1{font-size:32px}
+    .hero-text .lead{font-size:14px}
+    .hero-bullets{display:none}
 
-    .segments{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;gap:8px}
-    .seg{padding:18px;min-height:auto;gap:6px}
-    .seg-ico{width:34px;height:34px;font-size:16px}
-    .seg h3{font-size:15px}
-    .seg p{font-size:12.5px}
-    .seg-pill{font-size:11px;padding-top:10px}
-    .seg-arrow{width:24px;height:24px;font-size:12px;top:18px;right:18px}
-    .seg.primary{grid-column:1 / span 2;grid-row:1;padding:22px}
-    .seg.primary h3{font-size:24px}
-    .seg.primary p{font-size:13.5px;display:none}
-    .seg.primary .seg-stats{padding-top:14px;gap:10px}
-    .seg.primary .seg-stats .v{font-size:18px}
-    .seg.primary .seg-cta{padding:11px 16px;font-size:13px;margin-top:10px}
+    .form-card{padding:20px}
+    .product-tabs{grid-template-columns:repeat(5,1fr);gap:4px;padding:5px}
+    .product-tab{padding:8px 4px}
+    .product-tab .lab{font-size:10px}
+    .product-tab .ico{font-size:14px}
 
     .sec{padding:48px 0}
     .sec-head{grid-template-columns:1fr;gap:14px}
+    .products{grid-template-columns:1fr 1fr;gap:8px}
+    .prod{padding:18px;min-height:auto}
+    .prod h4{font-size:16px}
+    .prod p{font-size:12.5px}
+    .prod-rate .v{font-size:18px}
+    .prod.featured{grid-column:1 / span 2}
+    .prod-arrow{width:24px;height:24px}
+
     .license,.news{grid-template-columns:1fr;gap:32px;padding:32px}
-    .offers,.journal,.reviews,.faq,.foot-grid{grid-template-columns:1fr;gap:10px}
+    .offers,.journal,.reviews,.faq,.foot-grid{grid-template-columns:1fr}
     .metrics{grid-template-columns:1fr 1fr}
     .metric{padding:24px 18px}
     .metric .num{font-size:42px}
@@ -402,76 +391,302 @@
   </div>
 </nav>
 
-<!-- ============ HERO — fits one screen ============ -->
+<!-- ============ HERO with APPLICATION FORM ============ -->
 <section class="hero">
   <div class="wrap hero-inner">
+    <div class="hero-eyebrow">Шаг 1 · около минуты</div>
 
-    <div class="hero-top">
-      <div class="hero-eyebrow">Шаг 1 · около минуты</div>
-    </div>
+    <div class="hero-grid">
+      <!-- Text side -->
+      <div class="hero-text">
+        <h1 class="display">Оставьте заявку — <em>подберём подходящее</em></h1>
+        <p class="lead">Выберите, что вам нужно — мы покажем предложения от партнёров реестра Банка России, в которых <em>вас одобрят</em>. Без обзвона и скрытых условий.</p>
 
-    <div class="hero-grid-text">
-      <h1 class="display h1">С чем мы можем <em>помочь?</em></h1>
-      <p class="lead">Подберём предложения от партнёров реестра Банка России. <em>Без обзвона</em> и скрытых условий.</p>
-    </div>
-
-    <div class="segments">
-      <button class="seg primary" aria-label="Краткосрочный займ — основной выбор">
-        <div class="seg-ico">⌖</div>
-        <h3>Краткосрочный заём</h3>
-        <p>От 3 000 до 100 000 ₽ — быстро и без лишних формальностей.</p>
-        <span class="seg-pill">87% находят подходящее предложение</span>
-        <div class="seg-stats">
-          <div><div class="k">Сумма</div><div class="v">до 100 000 ₽</div></div>
-          <div><div class="k">На карту</div><div class="v">≈ 15 минут</div></div>
+        <div class="hero-bullets">
+          <div class="hero-bullet">
+            <div class="hero-bullet-mark">⌖</div>
+            <div class="hero-bullet-text">
+              <b>Только подходящие</b>
+              <span>Вы видите ставку, ПСК и шанс одобрения до подачи заявки.</span>
+            </div>
+          </div>
+          <div class="hero-bullet">
+            <div class="hero-bullet-mark">○</div>
+            <div class="hero-bullet-text">
+              <b>Подбор бесплатный</b>
+              <span>Зарабатываем на договоре с партнёром — не на клиенте.</span>
+            </div>
+          </div>
+          <div class="hero-bullet">
+            <div class="hero-bullet-mark">↔</div>
+            <div class="hero-bullet-text">
+              <b>Один запрос — десятки предложений</b>
+              <span>Один запрос в БКИ независимо от количества кредиторов в подборке.</span>
+            </div>
+          </div>
         </div>
-        <div class="seg-cta">Изучить варианты <span>→</span></div>
-      </button>
+      </div>
 
-      <button class="seg" aria-label="Кредит">
-        <span class="seg-arrow">→</span>
-        <div class="seg-ico">◐</div>
-        <h3>Кредит</h3>
-        <p>На покупки, ремонт, обучение</p>
-        <span class="seg-pill">от 5,9% годовых</span>
-      </button>
+      <!-- Form card -->
+      <div class="form-card">
+        <div class="form-card-h">
+          <h3>Оставить заявку</h3>
+          <span class="step">Шаг 1 / 3</span>
+        </div>
 
-      <button class="seg" aria-label="Карта">
-        <span class="seg-arrow">→</span>
-        <div class="seg-ico">◊</div>
-        <h3>Карта</h3>
-        <p>Дебетовые и кредитные карты</p>
-        <span class="seg-pill">кэшбэк до 30%</span>
-      </button>
+        <!-- Product tabs -->
+        <div class="product-tabs" role="tablist">
+          <button class="product-tab on" data-prod="loan" role="tab">
+            <span class="ico">⌖</span>
+            <span class="lab">Заём</span>
+          </button>
+          <button class="product-tab" data-prod="credit" role="tab">
+            <span class="ico">◐</span>
+            <span class="lab">Кредит</span>
+          </button>
+          <button class="product-tab" data-prod="card" role="tab">
+            <span class="ico">◊</span>
+            <span class="lab">Карта</span>
+          </button>
+          <button class="product-tab" data-prod="deposit" role="tab">
+            <span class="ico">↑</span>
+            <span class="lab">Вклад</span>
+          </button>
+          <button class="product-tab" data-prod="ins" role="tab">
+            <span class="ico">⌂</span>
+            <span class="lab">Страх.</span>
+          </button>
+        </div>
 
-      <button class="seg" aria-label="Сбережения">
-        <span class="seg-arrow">→</span>
-        <div class="seg-ico">↑</div>
-        <h3>Сбережения</h3>
-        <p>Вклады и накопительные счета</p>
-        <span class="seg-pill">до 22% годовых</span>
-      </button>
+        <!-- Form panels -->
+        <div class="form-panels">
 
-      <button class="seg" aria-label="Страхование">
-        <span class="seg-arrow">→</span>
-        <div class="seg-ico">⌂</div>
-        <h3>Страхование</h3>
-        <p>ОСАГО, КАСКО, ипотечное</p>
-        <span class="seg-pill">от 3 200 ₽</span>
-      </button>
+          <!-- Loan -->
+          <div class="form-panel on" data-prod="loan">
+            <div class="form-row">
+              <span class="lab">Сумма</span>
+              <div class="chips">
+                <button class="chip">5 000 ₽</button>
+                <button class="chip">10 000 ₽</button>
+                <button class="chip on">25 000 ₽</button>
+                <button class="chip">50 000 ₽</button>
+                <button class="chip">100 000 ₽</button>
+                <button class="chip">Другая</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <span class="lab">Срок</span>
+              <div class="chips">
+                <button class="chip">7 дней</button>
+                <button class="chip">14 дней</button>
+                <button class="chip on">21 день</button>
+                <button class="chip">30 дней</button>
+                <button class="chip">60 дней</button>
+                <button class="chip">180 дней</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <span class="lab">Телефон</span>
+              <input type="tel" class="phone-input" placeholder="+7 ___ ___ __ __">
+            </div>
+            <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Изучить варианты</button>
+          </div>
+
+          <!-- Credit -->
+          <div class="form-panel" data-prod="credit">
+            <div class="form-row">
+              <span class="lab">Сумма</span>
+              <div class="chips">
+                <button class="chip">100 000 ₽</button>
+                <button class="chip">300 000 ₽</button>
+                <button class="chip on">500 000 ₽</button>
+                <button class="chip">1 000 000 ₽</button>
+                <button class="chip">3 000 000 ₽</button>
+                <button class="chip">Другая</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <span class="lab">Срок</span>
+              <div class="chips">
+                <button class="chip">12 мес</button>
+                <button class="chip on">24 мес</button>
+                <button class="chip">36 мес</button>
+                <button class="chip">60 мес</button>
+                <button class="chip">84 мес</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <span class="lab">Телефон</span>
+              <input type="tel" class="phone-input" placeholder="+7 ___ ___ __ __">
+            </div>
+            <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Изучить варианты</button>
+          </div>
+
+          <!-- Card -->
+          <div class="form-panel" data-prod="card">
+            <div class="form-row">
+              <span class="lab">Тип карты</span>
+              <div class="chips">
+                <button class="chip on">Кредитная</button>
+                <button class="chip">Дебетовая</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <span class="lab">Что важно</span>
+              <div class="chips">
+                <button class="chip on">Кэшбэк</button>
+                <button class="chip">Без процентов</button>
+                <button class="chip">Путешествия</button>
+                <button class="chip">Премиум</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <span class="lab">Телефон</span>
+              <input type="tel" class="phone-input" placeholder="+7 ___ ___ __ __">
+            </div>
+            <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Подобрать карту</button>
+          </div>
+
+          <!-- Deposit -->
+          <div class="form-panel" data-prod="deposit">
+            <div class="form-row">
+              <span class="lab">Сумма вклада</span>
+              <div class="chips">
+                <button class="chip">10 000 ₽</button>
+                <button class="chip">30 000 ₽</button>
+                <button class="chip on">100 000 ₽</button>
+                <button class="chip">500 000 ₽</button>
+                <button class="chip">1 000 000 ₽</button>
+                <button class="chip">Другая</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <span class="lab">Срок</span>
+              <div class="chips">
+                <button class="chip">3 мес</button>
+                <button class="chip on">6 мес</button>
+                <button class="chip">12 мес</button>
+                <button class="chip">24 мес</button>
+                <button class="chip">36 мес</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <span class="lab">Телефон</span>
+              <input type="tel" class="phone-input" placeholder="+7 ___ ___ __ __">
+            </div>
+            <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Найти вклад</button>
+          </div>
+
+          <!-- Insurance -->
+          <div class="form-panel" data-prod="ins">
+            <div class="form-row">
+              <span class="lab">Что страхуем</span>
+              <div class="chips">
+                <button class="chip on">ОСАГО</button>
+                <button class="chip">КАСКО</button>
+                <button class="chip">Жильё</button>
+                <button class="chip">Ипотека</button>
+                <button class="chip">Жизнь и здоровье</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <span class="lab">Телефон</span>
+              <input type="tel" class="phone-input" placeholder="+7 ___ ___ __ __">
+            </div>
+            <button class="btn btn-pri btn-lg btn-block btn-arrow form-cta">Рассчитать</button>
+          </div>
+
+        </div>
+
+        <div class="form-foot">
+          <span>○</span>
+          <div>Отправляя заявку, вы соглашаетесь с <a>политикой обработки данных</a> и <a>пользовательским соглашением</a>. Один запрос в БКИ независимо от количества подборок.</div>
+        </div>
+      </div>
     </div>
-
   </div>
 </section>
 
-<!-- ============ BEST OFFERS WITH TABS ============ -->
+<!-- ============ FINANCIAL PRODUCTS BLOCK ============ -->
 <section class="sec" style="border-top:1px solid var(--hairline)">
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <div class="sec-num"><span>02</span> · Подборка дня</div>
+        <div class="sec-num"><span>02</span> · Продукты</div>
+        <h2 class="sec-h">Что мы помогаем <em>подобрать</em></h2>
+        <p class="sec-lead">Пять направлений в одном кабинете — один профиль, общие данные, общая история. Краткосрочный заём — самое популярное направление.</p>
+      </div>
+      <a class="sec-link">Все продукты</a>
+    </div>
+
+    <div class="products">
+      <button class="prod featured" aria-label="Краткосрочный заём — основной продукт">
+        <span class="prod-badge">Популярно</span>
+        <span class="prod-arrow">→</span>
+        <div class="prod-ico">⌖</div>
+        <h4>Краткосрочный заём</h4>
+        <p>От 3 000 до 100 000 ₽ — быстро и без лишних формальностей.</p>
+        <div class="prod-rate">
+          <div class="v">87% <span style="font-size:12px;color:rgba(255,255,255,.65);font-weight:500">находят</span></div>
+          <div class="k">≈ 15 минут</div>
+        </div>
+      </button>
+
+      <button class="prod">
+        <span class="prod-arrow">→</span>
+        <div class="prod-ico">◐</div>
+        <h4>Кредит</h4>
+        <p>На покупки, ремонт, обучение или рефинансирование.</p>
+        <div class="prod-rate">
+          <div class="v">от 5,9%</div>
+          <div class="k">годовых</div>
+        </div>
+      </button>
+
+      <button class="prod">
+        <span class="prod-arrow">→</span>
+        <div class="prod-ico">◊</div>
+        <h4>Карта</h4>
+        <p>Дебетовые и кредитные с возвратом за покупки.</p>
+        <div class="prod-rate">
+          <div class="v">до 30%</div>
+          <div class="k">кэшбэк</div>
+        </div>
+      </button>
+
+      <button class="prod">
+        <span class="prod-arrow">→</span>
+        <div class="prod-ico">↑</div>
+        <h4>Сбережения</h4>
+        <p>Вклады с защитой АСВ и накопительные счета.</p>
+        <div class="prod-rate">
+          <div class="v">до 22%</div>
+          <div class="k">годовых</div>
+        </div>
+      </button>
+
+      <button class="prod">
+        <span class="prod-arrow">→</span>
+        <div class="prod-ico">⌂</div>
+        <h4>Страхование</h4>
+        <p>ОСАГО, КАСКО и страхование жилья от 25+ страховщиков.</p>
+        <div class="prod-rate">
+          <div class="v">от 3 200 ₽</div>
+          <div class="k">на год</div>
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEST OFFERS WITH TABS ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-num"><span>03</span> · Подборка дня</div>
         <h2 class="sec-h">Сегодняшние <em>предложения</em></h2>
-        <p class="sec-lead">Подбор для пользователей с похожим профилем. Точные условия каждого предложения — на странице партнёра до подачи заявки.</p>
+        <p class="sec-lead">Подбор для пользователей с похожим профилем. Точные условия каждого предложения — на странице партнёра.</p>
       </div>
       <a class="sec-link">Все 150+ предложений</a>
     </div>
@@ -550,9 +765,9 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <div class="sec-num"><span>03</span> · Журнал</div>
+        <div class="sec-num"><span>04</span> · Журнал</div>
         <h2 class="sec-h">Полезное о финансах <em>и кредитной истории</em></h2>
-        <p class="sec-lead">Объясняем простым языком, как формируется кредитный рейтинг, что влияет на условия займов и как сделать правильный выбор.</p>
+        <p class="sec-lead">Объясняем простым языком, как формируется кредитный рейтинг и что влияет на условия займов.</p>
       </div>
       <a class="sec-link">Все статьи</a>
     </div>
@@ -586,9 +801,9 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <div class="sec-num"><span>04</span> · Отзывы</div>
+        <div class="sec-num"><span>05</span> · Отзывы</div>
         <h2 class="sec-h">Что говорят <em>наши клиенты</em></h2>
-        <p class="sec-lead">Реальные истории людей, которые пользуются Бустрой. Имена и регионы публикуются с письменного согласия по 152-ФЗ.</p>
+        <p class="sec-lead">Реальные истории людей, которые пользуются Бустрой. Имена и регионы публикуются с письменного согласия.</p>
       </div>
     </div>
     <div class="reviews">
@@ -620,7 +835,7 @@
   </div>
 </section>
 
-<!-- ============ LICENSE ============ -->
+<!-- ============ LICENSE + METRICS ============ -->
 <section class="sec">
   <div class="wrap">
     <div class="license">
@@ -690,22 +905,22 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <div class="sec-num"><span>05</span> · Частые вопросы</div>
+        <div class="sec-num"><span>06</span> · Частые вопросы</div>
         <h2 class="sec-h">Что важно <em>знать заранее</em></h2>
       </div>
     </div>
     <div class="faq">
-      <div class="faq-item"><div class="faq-q">Зачем выбирать «цель» — почему сразу не показать займы?</div><p class="faq-a">Чтобы предложения соответствовали именно вашему запросу. Если переходите по UTM с конкретным интентом, шаг пропускается автоматически.</p></div>
+      <div class="faq-item"><div class="faq-q">Зачем выбирать «продукт» — почему сразу не показать займы?</div><p class="faq-a">Чтобы предложения соответствовали именно вашему запросу. Если переходите по UTM с конкретным интентом, форма открывается на нужном продукте автоматически.</p></div>
       <div class="faq-item"><div class="faq-q">Подбор действительно бесплатный?</div><p class="faq-a">Да. Мы получаем оплату от партнёра за оформленный продукт — никаких скрытых комиссий с клиента.</p></div>
       <div class="faq-item"><div class="faq-q">Влияет ли заявка на кредитную историю?</div><p class="faq-a">Один запрос в БКИ независимо от количества кредиторов в подборке. Это не «разлетается» по всему рынку.</p></div>
       <div class="faq-item"><div class="faq-q">Можно ли отказаться от рассылки и продуктов?</div><p class="faq-a">В любой момент. Отписка в один клик из любого письма, удаление профиля — через личный кабинет.</p></div>
       <div class="faq-item"><div class="faq-q">Что значит «бундл» — займ + страховка со скидкой?</div><p class="faq-a">Партнёр-страховщик предоставляет лучшие условия при оформлении вместе с займом. Мы получаем оплату из договора с партнёром, не от вас.</p></div>
-      <div class="faq-item"><div class="faq-q">Хранятся ли мои данные у вас?</div><p class="faq-a">Только то, что необходимо для подбора и личного кабинета. Согласия на разные цели — раздельные документы (по 152-ФЗ и 156-ФЗ).</p></div>
+      <div class="faq-item"><div class="faq-q">Хранятся ли мои данные у вас?</div><p class="faq-a">Только то, что необходимо для подбора и личного кабинета. Согласия на разные цели — раздельные документы.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
+<!-- FOOTER -->
 <footer class="foot">
   <div class="foot-grid">
     <div>
@@ -718,20 +933,39 @@
     <div><h5>Помощь</h5><ul><li>Поддержка 24/7</li><li>База знаний</li><li>Реестр Банка России</li><li>Раскрытие информации</li></ul></div>
   </div>
   <div class="foot-bot">
-    <div class="wrap" style="display:contents">
-      <span>© 2026 Бустра. Все права защищены</span>
-      <span>Маркетплейс — не выдаёт займы напрямую</span>
-    </div>
+    <span>© 2026 Бустра. Все права защищены</span>
+    <span>Маркетплейс — не выдаёт займы напрямую</span>
   </div>
 </footer>
 
 <!-- Sticky CTA mobile -->
 <div class="sticky-cta">
-  <button class="btn btn-pri btn-block btn-arrow">Подобрать продукт</button>
+  <button class="btn btn-pri btn-block btn-arrow">Оставить заявку</button>
 </div>
 
 <script>
-  // Tabs
+  // Product tabs switching
+  document.querySelectorAll('.product-tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      const prod=tab.dataset.prod;
+      document.querySelectorAll('.product-tab').forEach(t=>t.classList.remove('on'));
+      document.querySelectorAll('.form-panel').forEach(p=>p.classList.remove('on'));
+      tab.classList.add('on');
+      document.querySelector('.form-panel[data-prod="'+prod+'"]').classList.add('on');
+    });
+  });
+
+  // Chips toggle (within each row only)
+  document.querySelectorAll('.chips').forEach(group=>{
+    group.querySelectorAll('.chip').forEach(c=>{
+      c.addEventListener('click',()=>{
+        group.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));
+        c.classList.add('on');
+      });
+    });
+  });
+
+  // Best-offers tabs
   document.querySelectorAll('.tab').forEach(t=>{
     t.addEventListener('click',()=>{
       document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
