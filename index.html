@@ -326,6 +326,26 @@
     .sticky-bar-btn:active{background:var(--primary-deep)}
   }
 
+
+  /* Sponsored / featured offer */
+  .offer.sponsored{
+    background:linear-gradient(165deg,#FAF7F0 0%,#F0E8D9 100%);
+    border:2px solid var(--copper);
+    box-shadow:0 16px 36px rgba(160,135,106,.18)
+  }
+  .offer.sponsored .offer-logo{background:#5A4220;color:#FFE6B8;border-color:#5A4220}
+  .offer.sponsored .pull-badge.hi{background:#5A4220;color:#FFE6B8}
+  .sponsored-marker{
+    position:absolute;top:-12px;right:18px;
+    background:#5A4220;color:#FFE6B8;
+    padding:5px 12px;border-radius:7px;
+    font-family:'Manrope',sans-serif;font-weight:800;font-size:10px;
+    letter-spacing:.07em;text-transform:uppercase;
+    box-shadow:0 4px 10px rgba(90,66,32,.2)
+  }
+  .offer.sponsored .btn-sec{background:#5A4220;color:#FFE6B8;border-color:#5A4220;font-weight:700}
+  .offer.sponsored .btn-sec:hover{background:#3E2A0B;border-color:#3E2A0B}
+
 </style>
 </head>
 <body>
@@ -620,9 +640,10 @@
     </div>
 
     <div class="offers">
-      <div class="offer hi-chance">
+      <div class="offer sponsored hi-chance">
+        <span class="sponsored-marker">Партнёрское предложение</span>
         <span class="pull-badge hi">96% одобрят</span>
-        <div class="offer-h"><div class="offer-logo">МД</div><span class="offer-tag">Рекомендуем</span></div>
+        <div class="offer-h"><div class="offer-logo">МД</div><span class="offer-tag">Гарантия партнёра</span></div>
         <div class="offer-name">МигДеньги</div>
         <div class="offer-rate">0%<small>первый займ — 96% получают одобрение</small></div>
         <div class="offer-meta"><div>Сумма — <b>до 30 000 ₽</b></div><div>Срок — <b>до 30 дней</b></div></div>
@@ -652,7 +673,7 @@
     </div>
 
     <div class="psk">
-      <b>Раскрытие по 353-ФЗ:</b> Подбор бесплатный для клиента. Решение по займу принимает партнёр. ПСК у партнёров — от 0% (первый заём) до 292% годовых. Точное значение указывается в карточке партнёра до подачи заявки.<br><br><b>Шанс одобрения</b> рассчитывается по soft-pull данным НБКИ + ОКБ при наличии согласия по 156-ФЗ. Запрос не отображается в кредитной истории.
+      <b>Раскрытие по 353-ФЗ:</b> Подбор бесплатный для клиента. Решение по займу принимает партнёр. ПСК у партнёров — от 0% (первый заём) до 292% годовых. Точное значение указывается в карточке партнёра до подачи заявки.<br><br><b>Шанс одобрения</b> рассчитывается по soft-pull данным НБКИ + ОКБ при наличии согласия по 156-ФЗ. Запрос не отображается в кредитной истории.<br><br><b>Партнёрское предложение</b> — премиум-размещение партнёра, маркируется явно. ПСК и условия соответствуют требованиям 353-ФЗ; размещение не влияет на условия для клиента.
     </div>
   </div>
 </section>
