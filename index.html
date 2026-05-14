@@ -346,6 +346,25 @@
   .offer.sponsored .btn-sec{background:#5A4220;color:#FFE6B8;border-color:#5A4220;font-weight:700}
   .offer.sponsored .btn-sec:hover{background:#3E2A0B;border-color:#3E2A0B}
 
+
+  /* Business-mode: только Кредит для бизнеса */
+  .business-product-title{
+    display:none;align-items:center;gap:12px;
+    font-family:'Manrope',sans-serif;font-weight:700;font-size:15.5px;letter-spacing:-.015em;
+    padding:13px 16px;border-radius:12px;margin-bottom:16px;
+    background:var(--primary-soft);color:var(--primary);
+    border:1px solid rgba(31,78,95,.2)
+  }
+  .business-product-title::before{
+    content:"◐";font-size:18px;line-height:1;color:var(--primary)
+  }
+  .business-product-title small{
+    display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:11.5px;
+    color:var(--ink-3);letter-spacing:0;margin-top:2px
+  }
+  .form-card.business-mode .product-tabs{display:none}
+  .form-card.business-mode .business-product-title{display:flex}
+
 </style>
 </head>
 <body>
@@ -409,6 +428,10 @@
         <div class="aud-switch" role="tablist" aria-label="Тип клиента">
           <button class="aud-btn on" data-aud="person">Физлицу</button>
           <button class="aud-btn" data-aud="business">Бизнесу</button>
+        </div>
+
+        <div class="business-product-title">
+          <div>Кредит для бизнеса<small>Другие продукты для бизнеса — скоро</small></div>
         </div>
 
         <div class="product-tabs" role="tablist">
@@ -829,17 +852,28 @@
       const aud = btn.dataset.aud;
       document.querySelectorAll('.aud-btn').forEach(x=>x.classList.remove('on'));
       btn.classList.add('on');
+
+      // Toggle business-mode на form-card
+      const formCard = document.querySelector('.form-card');
+      if (formCard) formCard.classList.toggle('business-mode', aud === 'business');
+
+      // Switch panels group
       document.querySelectorAll('.form-panels-group').forEach(g=>{
         g.classList.toggle('on', g.dataset.aud === aud);
       });
+
+      // Update tab labels
       document.querySelectorAll('.product-tab .lab[data-person-label]').forEach(lab=>{
         lab.textContent = aud === 'business' ? lab.dataset.businessLabel : lab.dataset.personLabel;
       });
+
+      // Для бизнеса принудительно показываем только Кредит, для физлица — Заём
+      const targetProduct = (aud === 'business') ? 'credit' : 'loan';
       document.querySelectorAll('.product-tab').forEach(t=>{
-        t.classList.toggle('on', t.dataset.prod === 'loan');
+        t.classList.toggle('on', t.dataset.prod === targetProduct);
       });
       document.querySelectorAll('.form-panel').forEach(p=>{
-        p.classList.toggle('on', p.dataset.prod === 'loan');
+        p.classList.toggle('on', p.dataset.prod === targetProduct);
       });
     });
   });
